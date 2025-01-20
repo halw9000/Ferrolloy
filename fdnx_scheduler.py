@@ -32,7 +32,7 @@ def categorize_pour_temp(temp):
     else:
         return ""
             
-def import_FDNX_jobs(uploaded_file)
+def import_FDNX_jobs(uploaded_file):
 
     dtype = {
         'order_num': str,  
