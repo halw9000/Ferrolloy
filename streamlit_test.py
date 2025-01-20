@@ -6,7 +6,7 @@ uploaded_file = st.file_uploader("Upload Excel Jobs File Here", type={"xlsx"})
 
 if uploaded_file is not None:
    df = pd.ExcelFile(uploaded_file)
-   sheet_names = xls.sheet_names
+   sheet_names = df.sheet_names
    with st.form(key='sheet_selector_form'):
       selected_sheet = st.selectbox("Select a sheet to load data", sheet_names)
       selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","G35","Other"])
