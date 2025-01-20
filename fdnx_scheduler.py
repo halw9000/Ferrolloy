@@ -53,7 +53,7 @@ def import_FDNX_jobs(uploaded_file):
     df.set_index('order_num',inplace=True)
     df['temp_flag'] = df['pour_temp_min'].apply(categorize_pour_temp)
     # Add a column for order_qty rounded up to the nearest multiple of 3 for total molds to be made
-    df['mold_qty'] = df['order_qty'].apply(lambda x: math.ceil(x / 3) * 3)
+    df['mold_qty'] = df['order_qty'].apply(lambda x: math.ceil(x / 3.0) * 3.0)
     # molds per hour added to data frame
     df['mph'] = df['cores_req'].apply(lambda x: fc.mph_withcore if x == 1 else fc.mph_nocore)
     # Add a column for mold hours
