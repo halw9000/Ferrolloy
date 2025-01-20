@@ -10,6 +10,8 @@ if uploaded_file is not None:
       selected_sheet = st.selectbox("Select a sheet to load data", sheet_names)
       selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","G35","Other"])
       submit_button = st.form_submit_button(label='Submit')
+      if submit_button:
+         st.write ("Generating schedules for: ", selected_iron)
 else:
    st.warning("")
 
