@@ -5,7 +5,7 @@ import time, io
 import fdnx_scheduler as fs
 
 def schedule_info(df):
-    info = "Pour Weight:" + df['pour_wt'].sum() + ", Total Molds:", + df['mold_qty'].sum() + "Mold Hours: " + df['mold_hrs'].sum()
+    info = "Pour Weight:" + str(df['pour_wt'].sum()) + ", Total Molds:", + str(df['mold_qty'].sum()) + "Mold Hours: " + str(df['mold_hrs'].sum())
     return info
     
 st.set_page_config(
