@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import time
 
 uploaded_file = st.file_uploader("Upload Excel Jobs File Here", type={"xlsx"})
 
