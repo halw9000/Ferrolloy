@@ -50,31 +50,21 @@ def import_FDNX_jobs(uploaded_file):
     # Set the column headers to match the dtype keys
     df.columns = list(dtype.keys())
     df.set_index('order_num',inplace=True)
-    
-    # Add a column for pour temperature category
-
-    
     df['temp_flag'] = df['pour_temp_min'].apply(categorize_pour_temp)
-    
     # Add a column for order_qty rounded up to the nearest multiple of 3 for total molds to be made
     df['mold_qty'] = df['order_qty'].apply(lambda x: math.ceil(x / 3) * 3)
-    
     # molds per hour added to data frame
     df['mph'] = df['cores_req'].apply(lambda x: fc.mph_withcore if x == 1 else fc.mph_nocore)
-    
     # Add a column for mold hours
     df['mold_hrs'] = df.apply(lambda row: row['mold_qty'] / row['mph'], axis=1)
-    
     # Add a column for carts to fill as an integer
     df['carts_to_fill_order'] = (df['mold_qty'] / fc.molds_per_cart).astype(int)
-    
     # Add a column for cart deck time
     df['cart_deck_time'] = df.apply(lambda row: row['mold_wt'] * fc.molds_per_cart * fc.pour_speed_lbs_sec + row['jacket_min'] * 60 + fc.cart_pour_buffer_sec, axis=1)
-    
     # Add a column for total deck time
     df['total_deck_time'] = df.apply(lambda row: row['carts_to_fill_order'] * row['cart_deck_time'], axis=1)
 
-return df
+    return df
 ############################################################################################################
 ## FUNCTIONS
 
