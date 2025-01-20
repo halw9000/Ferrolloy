@@ -14,7 +14,7 @@ import streamlit as st
 ############################################################################################################
 ## Weights for balancing schedules
 schd_var_threshold = .01  # Percent variance per schedule allowed between total mold hours on each FDNX machine
-mold_hour_weight = .5
+mold_hour_weight = 0
 pour_weight_weight = .2
 crt_count_weight = .8
 deck_time_weight = 0
