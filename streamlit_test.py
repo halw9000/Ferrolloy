@@ -34,18 +34,18 @@ if uploaded_file is not None:
             st.success("Done!")
         to_download = 1
 
-if to_download == 1:
-    with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-    # Write each dataframe to a different worksheet.
-        df_jobs.to_excel(writer, sheet_name='Sheet1')
-       # Close the Pandas Excel writer and output the Excel file to the buffer
-        writer.close()
-        st.download_button(
-            label= ('Download Schedule for: ' + selected_iron),
-            data=buffer,
-            file_name="pandas_multiple.xlsx",
-            mime="application/vnd.ms-excel"
-          )
+        if to_download == 1:
+            with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+            # Write each dataframe to a different worksheet.
+                df_jobs.to_excel(writer, sheet_name='Sheet1')
+               # Close the Pandas Excel writer and output the Excel file to the buffer
+                writer.close()
+                st.download_button(
+                    label= ('Download Schedule for: ' + selected_iron),
+                    data=buffer,
+                    file_name="pandas_multiple.xlsx",
+                    mime="application/vnd.ms-excel"
+                  )
 
    
 
