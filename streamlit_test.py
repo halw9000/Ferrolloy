@@ -29,7 +29,7 @@ if uploaded_file is not None:
       chart1, chart2 = st.columns(2)
       with chart1:
          st.line_chart(chart_data1)
-      with chart2
+      with chart2:
          st.line_chart(chart_data2)
 
    if to_download == 1:
