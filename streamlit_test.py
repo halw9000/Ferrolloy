@@ -22,7 +22,7 @@ if uploaded_file is not None:
        # Write each dataframe to a different worksheet.
              df_jobs.to_excel(writer, sheet_name='Sheet1')
           # Close the Pandas Excel writer and output the Excel file to the buffer
-             writer.save()
+             writer.close()
              st.download_button(
                  label="Download Excel worksheets",
                  data=buffer,
