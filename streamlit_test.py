@@ -54,7 +54,9 @@ if uploaded_file is not None:
     if to_download == 1:
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
         # Write each dataframe to a different worksheet.
-            df_jobs.to_excel(writer, sheet_name='Sheet1')
+            fdnx1.to_excel(writer, sheet_name='FCNX1')
+            fdnx2.to_excel(writer, sheet_name='FDNX2')
+            fdnx3.to_excel(writer, sheet_name='FDNX3')
            # Close the Pandas Excel writer and output the Excel file to the buffer
             writer.close()
             st.download_button(
