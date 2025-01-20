@@ -6,7 +6,8 @@ import fdnx_scheduler as fs
 
 def schedule_info(df):
     info = "Pour Weight:" + df['pour_wt'].sum() + ", Total Molds:", + df['mold_qty'].sum() + "Mold Hours: " + df['mold_hrs'].sum()
-return info
+    return info
+    
 st.set_page_config(
     page_title="Ferroloy Scheduler",
     page_icon="🛠",
