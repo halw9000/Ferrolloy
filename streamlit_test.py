@@ -48,12 +48,14 @@ if uploaded_file is not None:
               mime="application/vnd.ms-excel"
           )
 
-chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-chart1 = st.line_chart(chart_data1)
+st.dataframe(df_jobs)
 
-compare_file = st.file_uploader("(Optional) Upload a Comparison Schedule", type={"xlsx"})
-chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-chart2 = st.line_chart(chart_data2)
+#chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+#chart1 = st.line_chart(chart_data1)
+
+#compare_file = st.file_uploader("(Optional) Upload a Comparison Schedule", type={"xlsx"})
+#chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+#chart2 = st.line_chart(chart_data2)
 
 
 
