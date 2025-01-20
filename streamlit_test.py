@@ -3,7 +3,6 @@ import pandas as pd
 import time, io
 
 uploaded_file = st.file_uploader("Upload Excel Jobs File Here", type={"xlsx"})
-buffer = io.BytesIO()
 
 if uploaded_file is not None:
    xls = pd.ExcelFile(uploaded_file)
@@ -14,10 +13,10 @@ if uploaded_file is not None:
       submit_button = st.form_submit_button(label='Submit')
       if submit_button:
          with st.spinner('Generating schedules for: ' + selected_iron):
-            time.sleep(5)
+            time.sleep(2)
          st.success("Done!")
       # display the dataframe on streamlit app
-         st.write(df)
+         st.write(xls)
 
 
 else:
