@@ -3,6 +3,7 @@ import pandas as pd
 import time
 
 uploaded_file = st.file_uploader("Upload Excel Jobs File Here", type={"xlsx"})
+buffer = io.BytesIO()
 
 if uploaded_file is not None:
    xls = pd.ExcelFile(uploaded_file)
