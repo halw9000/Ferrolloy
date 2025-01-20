@@ -3,6 +3,15 @@ import pandas as pd
 import numpy as np
 import time, io
 
+st.set_page_config(
+    page_title="Ferroloy Scheduler",
+    page_icon="🛠",
+)
+
+st.sidebar.header("Ferroloy Scheduler App")
+
+st.write("# Schedule File Upload")
+
 chart_container = st.container()
 uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
 
