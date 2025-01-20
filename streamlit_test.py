@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-uploaded_file = st.file_uploader(“Choose a file”)
+uploaded_file = st.file_uploader()
 
 if uploaded_file is not None:
 #read csv
