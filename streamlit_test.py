@@ -9,6 +9,6 @@ if uploaded_file is not None:
    #read xls or xlsx
    df1=pd.read_excel(uploaded_file)
 else:
-st.warning()
+   st.warning()
 
 filename=uploaded_file.name
