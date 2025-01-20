@@ -4,6 +4,9 @@ import numpy as np
 import time, io
 import fdnx_scheduler as fs
 
+def schedule_info(df):
+    info = "Pour Weight:" + df['pour_wt'].sum() + ", Total Molds:", + df['mold_qty'].sum() + "Mold Hours: " + df['mold_hrs'].sum()
+return info
 st.set_page_config(
     page_title="Ferroloy Scheduler",
     page_icon="🛠",
@@ -32,7 +35,7 @@ if uploaded_file is not None:
             with st.spinner('Generating schedules for: ' + selected_iron):
                 schedules_made = fs.get_FDNX_schedule(selected_iron,df_jobs)
             st.success("Done! Schedules displayed and available for download.")
-            st.write("FDNX 1 Schedule:")
+            st.write('FDNX 1 Schedule:' + schedule_info(schedules_made[0]))
             st.dataframe(schedules_made[0])
             st.write("FDNX 2 Schedule:")
             st.dataframe(schedules_made[0])
