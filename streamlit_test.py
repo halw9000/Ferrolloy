@@ -16,7 +16,7 @@ if uploaded_file is not None:
             time.sleep(2)
          st.success("Done!")
       # display the dataframe on streamlit app
-         st.write(df)
+         
 
 
 else:
