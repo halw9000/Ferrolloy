@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-uploaded_file = st.file_uploader("Updload Jobs Here")
+uploaded_file = st.file_uploader("Upload Jobs Here")
 
 if uploaded_file is not None:
    #read csv
@@ -12,4 +12,3 @@ if uploaded_file is not None:
 else:
    st.warning("")
 
-filename=uploaded_file.name
