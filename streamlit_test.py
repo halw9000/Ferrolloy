@@ -6,7 +6,7 @@ uploaded_file = st.file_uploader("Upload Excel Jobs File Here", type={"xlsx"})
 buffer = io.BytesIO()
 
 if uploaded_file is not None:
-   df = pd.ExcelFile(uploaded_file)
+   df = pd.read_excel(uploaded_file)
    sheet_names = df.sheet_names
    with st.form(key='sheet_selector_form'):
       selected_sheet = st.selectbox("Select a sheet to load data", sheet_names)
