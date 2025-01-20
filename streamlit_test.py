@@ -21,6 +21,9 @@ if uploaded_file is not None:
          st.success("Done!")
          to_download = 1
 
+chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+st.line_chart(chart_data)
+
    if to_download == 1:
       with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     # Write each dataframe to a different worksheet.
