@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import openpyxl
 
 uploaded_file = st.file_uploader("Upload Excel Jobs File Here")
 
