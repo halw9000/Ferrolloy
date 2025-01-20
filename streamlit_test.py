@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time, io
+import fdnx_scheduler as fs
 
 st.set_page_config(
     page_title="Ferroloy Scheduler",
@@ -23,11 +24,9 @@ to_download = 0
 
 if uploaded_file is not None:
    
-   df = pd.ExcelFile(uploaded_file)
-   df_jobs = pd.read_excel(uploaded_file)
-   sheet_names = df.sheet_names
+   df_jobs = fs.import_FDNX_jobs(uploaded_file)
+   
    with st.form(key='sheet_selector_form'):
-      selected_sheet = st.selectbox("Select a sheet to load data", sheet_names)
       selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","G35","Other"])
       submit_button = st.form_submit_button(label='Submit')
       if submit_button:
