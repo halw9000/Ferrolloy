@@ -17,7 +17,7 @@ st.sidebar.header("Ferroloy Scheduler")
 
 st.write("# FDNX Job File Upload")
 st.write(
-    """This scheduler is based on..."""
+    """This scheduler will ingest the FDNX weekly job data and aim to create a balanced schedule across each machine. This project is still in development, so the scheduler may display odd behavior--for example, it may switch from balancing schedules on total molds to balancing on total pour weight."""
 )
 
 chart_container = st.container()
