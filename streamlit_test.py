@@ -11,6 +11,9 @@ st.set_page_config(
 st.sidebar.header("Ferroloy Scheduler App")
 
 st.write("# Schedule File Upload")
+st.write(
+    """This scheduler is based on..."""
+)
 
 chart_container = st.container()
 uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
