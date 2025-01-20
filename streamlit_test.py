@@ -19,7 +19,7 @@ if uploaded_file is not None:
             time.sleep(2)
          st.success("Done!")
          to_download == 1
-         break
+
    while to_download == 1:
       with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     # Write each dataframe to a different worksheet.
