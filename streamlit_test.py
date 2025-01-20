@@ -21,7 +21,7 @@ if uploaded_file is not None:
          st.success("Done!")
          to_download = 1
 
-   while to_download == 1:
+   if to_download == 1:
       with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     # Write each dataframe to a different worksheet.
           df_jobs.to_excel(writer, sheet_name='Sheet1')
