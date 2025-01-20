@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-uploaded_file = st.file_uploader()
+uploaded_file = st.file_uploader("")
 
 if uploaded_file is not None:
    #read csv
@@ -9,6 +9,6 @@ if uploaded_file is not None:
    #read xls or xlsx
    df1=pd.read_excel(uploaded_file)
 else:
-   st.warning()
+   st.warning("")
 
 filename=uploaded_file.name
