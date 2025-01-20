@@ -6,7 +6,9 @@ uploaded_file = st.file_uploader("Upload Excel Jobs File Here", type={"xlsx"})
 buffer = io.BytesIO()
 
 if uploaded_file is not None:
-   df = pd.read_excel(uploaded_file)
+   
+   df = pd.ExcelFile(uploaded_file)
+   df_jobs = pd.read_excel(uploaded_file)
    sheet_names = df.sheet_names
    with st.form(key='sheet_selector_form'):
       selected_sheet = st.selectbox("Select a sheet to load data", sheet_names)
@@ -18,15 +20,15 @@ if uploaded_file is not None:
          st.success("Done!")
          with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
        # Write each dataframe to a different worksheet.
-          df.to_excel(writer, sheet_name='Sheet1')
-       # Close the Pandas Excel writer and output the Excel file to the buffer
-          writer.save()
-          st.download_button(
-              label="Download Excel worksheets",
-              data=buffer,
-              file_name="pandas_multiple.xlsx",
-              mime="application/vnd.ms-excel"
-          )
+             df_jobs.to_excel(writer, sheet_name='Sheet1')
+          # Close the Pandas Excel writer and output the Excel file to the buffer
+             writer.save()
+             st.download_button(
+                 label="Download Excel worksheets",
+                 data=buffer,
+                 file_name="pandas_multiple.xlsx",
+                 mime="application/vnd.ms-excel"
+             )
          
 
 
