@@ -11,7 +11,7 @@ if uploaded_file is not None:
       selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","G35","Other"])
       submit_button = st.form_submit_button(label='Submit')
       if submit_button:
-         with st.spinner('Generating schedules for: ', selected_iron):
+         with st.spinner('Generating schedules for: ' + selected_iron):
             time.sleep(5)
          st.success("Done!")
 else:
