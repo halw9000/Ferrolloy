@@ -25,13 +25,13 @@ to_download = 0
 if uploaded_file is not None:
     df_jobs = fs.import_FDNX_jobs(uploaded_file)
     #st.dataframe(df_jobs)
-   with st.form(key='sheet_selector_form'):
-      selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","G35","Other"])
-      submit_button = st.form_submit_button(label='Submit')
-      if submit_button:
-         with st.spinner('Generating schedules for: ' + selected_iron):
-            time.sleep(2)
-         st.success("Done!")
+    with st.form(key='sheet_selector_form'):
+        selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","G35","Other"])
+        submit_button = st.form_submit_button(label='Submit')
+        if submit_button:
+            with st.spinner('Generating schedules for: ' + selected_iron):
+                time.sleep(2)
+            st.success("Done!")
          to_download = 1
 
    if to_download == 1:
