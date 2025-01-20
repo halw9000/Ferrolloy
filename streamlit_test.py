@@ -5,7 +5,7 @@ import time, io
 import fdnx_scheduler as fs
 
 def schedule_info(df):
-    info = "Pour Weight:" + str(df['pour_wt'].sum()) + ", Total Molds:" + str(df['mold_qty'].sum()) + ", Mold Hours: " + str(df['mold_hrs'].sum())
+    info = "Pour Weight:" + str(df['pour_wt'].sum()) + ", Total Molds: " + str(df['mold_qty'].sum()) + ", Mold Hours: " + str(round(df['mold_hrs'].sum(),1))
     return info
     
 st.set_page_config(
@@ -39,7 +39,7 @@ if uploaded_file is not None:
                 fdnx2 = schedules_made[1]
                 fdnx3 = schedules_made[2]
             st.success("Done! Schedules displayed and available for download.")
-            st.write('FDNX 1 Schedule:' + schedule_info(fdnx1))
+            st.write('FDNX 1 Schedule: ' + schedule_info(fdnx1))
             st.dataframe(fdnx1)
             st.write("FDNX 2 Schedule:")
             st.dataframe(fdnx2)
