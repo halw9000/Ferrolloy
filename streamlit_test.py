@@ -57,12 +57,14 @@ if uploaded_file is not None:
             fdnx1.to_excel(writer, sheet_name='FCNX1')
             fdnx2.to_excel(writer, sheet_name='FDNX2')
             fdnx3.to_excel(writer, sheet_name='FDNX3')
+            # Get the current timestamp
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
            # Close the Pandas Excel writer and output the Excel file to the buffer
             writer.close()
             st.download_button(
                 label= ('Download Schedule for: ' + selected_iron),
                 data=buffer,
-                file_name="pandas_multiple.xlsx",
+                file_name= "FDNXSchedule_" + timestamp +".xlsx",
                 mime="application/vnd.ms-excel"
               )
 
