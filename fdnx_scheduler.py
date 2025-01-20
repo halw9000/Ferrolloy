@@ -151,7 +151,7 @@ def get_FDNX_schedule(material, df):
 
 
     df1 = df1.sort_values(by='mold_wt', ascending=True)
-    df2 = df3.sample(frac=1).reset_index(drop=True)
+    df2 = df2.sample(frac=1).reset_index(drop=True)
     df3 = df3.sort_values(by='mold_wt', ascending=False)
     FDNX_Schedule = [df1, df2, df3]
     
