@@ -47,8 +47,10 @@ chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 
 with chart_container:
    chart1, chart2 = st.columns(2)
-
-
+   with chart1:
+      st.line_chart(chart_data1)
+   with chart2:
+      st.line_chart(chart_data2)
 
 
 
