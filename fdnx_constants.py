@@ -6,7 +6,7 @@ hot_pour_threshold = 2550
 ## FDNX Constants -- mold speeds and pattern switch times
 mph_nocore = 35  # FDNX capacity per hour without core
 mph_withcore = 25  # FDNX capacity per hour with core
-pattern_switch_hours = 1  # Time for switching patterns on FDNX machine
+pattern_switch_hours = .15  # Time for switching patterns on FDNX machine
 
 ## DECK Constants
 deck_lanes = 6  
