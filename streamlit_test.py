@@ -5,8 +5,6 @@ import time, io
 
 chart_container = st.container()
 uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
-chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 
 buffer = io.BytesIO()
 to_download = 0
