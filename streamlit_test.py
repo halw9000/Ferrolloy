@@ -28,7 +28,7 @@ if uploaded_file is not None:
        # Close the Pandas Excel writer and output the Excel file to the buffer
           writer.close()
           st.download_button(
-              label="Download Excel worksheets",
+              label="Download Schedule for: " selected_iron,
               data=buffer,
               file_name="pandas_multiple.xlsx",
               mime="application/vnd.ms-excel"
