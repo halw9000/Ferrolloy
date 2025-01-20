@@ -4,6 +4,7 @@ import time, io
 
 uploaded_file = st.file_uploader("Upload Excel Jobs File Here", type={"xlsx"})
 buffer = io.BytesIO()
+to_download = 0
 
 if uploaded_file is not None:
    
@@ -18,9 +19,9 @@ if uploaded_file is not None:
          with st.spinner('Generating schedules for: ' + selected_iron):
             time.sleep(2)
          st.success("Done!")
-         to_download == 1
+         to_download = 1
 
-   while to_download = 1:
+   while to_download == 1:
       with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     # Write each dataframe to a different worksheet.
           df_jobs.to_excel(writer, sheet_name='Sheet1')
