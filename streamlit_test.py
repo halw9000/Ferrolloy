@@ -41,7 +41,6 @@ if uploaded_file is not None:
          
 compare_file = st.file_uploader("(Optional) Upload a Comparison Schedule", type={"xlsx"})
 
-else:
-   st.warning("")
+
 
 
