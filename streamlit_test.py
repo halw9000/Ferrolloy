@@ -32,7 +32,7 @@ if uploaded_file is not None:
             with st.spinner('Generating schedules for: ' + selected_iron):
                 time.sleep(2)
             st.success("Done!")
-        to_download = 1
+            to_download = 1
 
     if to_download == 1:
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
