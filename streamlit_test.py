@@ -13,9 +13,9 @@ st.set_page_config(
     page_icon="🛠",
 )
 
-st.sidebar.header("Ferroloy Scheduler App")
+st.sidebar.header("Ferroloy Scheduler")
 
-st.write("#FDNX Job File Upload")
+st.write("# FDNX Job File Upload")
 st.write(
     """This scheduler is based on..."""
 )
