@@ -48,7 +48,7 @@ if uploaded_file is not None:
               mime="application/vnd.ms-excel"
           )
 
-st.dataframe(df_jobs)
+    st.dataframe(df_jobs)
 
 #chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 #chart1 = st.line_chart(chart_data1)
