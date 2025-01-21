@@ -25,6 +25,6 @@ ladle_start_temp_avg = 2650
 ladle_start_temp_dev = 5
 ladle_tempdrop_min = 25
 
-ladle_refill_time = 120  # Time to refill a ladle in seconds
+ladle_refill_time = 180  # Time to refill a ladle in seconds
 
-furnace_ready_sec = 500  # Minimum time to refill a ladle in seconds
+furnace_ready_sec = 0  # Minimum time to refill a ladle in seconds
