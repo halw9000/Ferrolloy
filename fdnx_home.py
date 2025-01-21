@@ -54,10 +54,9 @@ if uploaded_file is not None:
             st.write(schedule_info(fdnx3))
             st.dataframe(fdnx3)
             to_download = 1
-            with st.spinner("Simulation running. Should take ~30s"):
-                    st.write("simulated")
+            with st.spinner("Simulation running. Should take ~20-30s max"):
                     ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)    
-            st.header("Ladles Table:")
+            st.header("Simulated Ladles:")
             st.dataframe(ladles)
     
     if to_download == 1:
