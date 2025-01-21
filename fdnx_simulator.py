@@ -173,15 +173,15 @@ def fdnx_simulator(test_schedule):
 
     # Initialize ladles DataFrame
     ladles = pd.DataFrame({
-        'ladle_number': pd.series(dtype='int'),  
-        'ladle_weight': pd.series(dtype='float'),
-        'ladle_start_weight': pd.series(dtype='float'),  
-        'ladle_temp': pd.series(dtype='float'),
-        'ladle_start_temp': pd.series(dtype='float'),
-        'start_time': pd.series(dtype='float'),
-        'molds_filled': pd.series(dtype='float'),
-        'total_mold_wt': pd.series(dtype='float'),
-        'end_time': pd.series(dtype='float')
+        'ladle_number': pd.Series(dtype='int'),  
+        'ladle_weight': pd.Series(dtype='float'),
+        'ladle_start_weight': pd.Series(dtype='float'),  
+        'ladle_temp': pd.Series(dtype='float'),
+        'ladle_start_temp': pd.Series(dtype='float'),
+        'start_time': pd.Series(dtype='float'),
+        'molds_filled': pd.Series(dtype='float'),
+        'total_mold_wt': pd.Series(dtype='float'),
+        'end_time': pd.Series(dtype='float')
     })
     #ladles = pd.DataFrame(dtype=ladle_dtype)
     current_time = 0
