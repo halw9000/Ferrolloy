@@ -156,6 +156,6 @@ def get_FDNX_schedule(material, df):
     FDNX_Schedule = [df1, df2, df3]
     
 
-    return FDNX_Schedule
+    return FDNX_Schedule, total_attempts
 
 # print(get_FDNX_schedule('65-45-12'))
