@@ -42,22 +42,23 @@ if uploaded_file is not None:
                 fdnx3 = schedules_made[2]
             if total_attempts < fs.max_attempts: 
                 st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
+                st.header("FDNX 1 Schedule")
+                st.write(schedule_info(fdnx1))
+                st.dataframe(fdnx1)
+                st.header("FDNX 2 Schedule")
+                st.write(schedule_info(fdnx2))
+                st.dataframe(fdnx2)
+                st.header("FDNX 3 Schedule")
+                st.write(schedule_info(fdnx3))
+                st.dataframe(fdnx3)
+                to_download = 1
+                with st.spinner("Simulation running. Should take ~20-30s max"):
+                        ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)    
+                st.header("Simulated Ladles:")
+                st.dataframe(ladles)
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
-            st.header("FDNX 1 Schedule")
-            st.write(schedule_info(fdnx1))
-            st.dataframe(fdnx1)
-            st.header("FDNX 2 Schedule")
-            st.write(schedule_info(fdnx2))
-            st.dataframe(fdnx2)
-            st.header("FDNX 3 Schedule")
-            st.write(schedule_info(fdnx3))
-            st.dataframe(fdnx3)
-            to_download = 1
-            with st.spinner("Simulation running. Should take ~20-30s max"):
-                    ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)    
-            st.header("Simulated Ladles:")
-            st.dataframe(ladles)
+
     
     if to_download == 1:
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
