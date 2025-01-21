@@ -117,15 +117,15 @@ def balance_FDNX(df, material, total_attempts):
         # Randomly move items between DataFrames to balance them
         i = i + 1
         total_attempts = total_attempts + 1
-        if wt1 > wt2:
+        if wt1 > wt2 and not df1[df1['temp_flag'] == ''].empty:
             row_to_move = df1[df1['temp_flag'] == ''].sample(n=1)
             df2 = pd.concat([df2, row_to_move])
             df1 = df1.drop(row_to_move.index)
-        elif wt2 > wt3:
+        elif wt2 > wt3 and not df2[df2['temp_flag'] == ''].empty:
             row_to_move = df2[df2['temp_flag'] == ''].sample(n=1)
             df3 = pd.concat([df3, row_to_move])
             df2 = df2.drop(row_to_move.index)
-        elif wt3 > wt1:
+        elif wt3 > wt1 and not df3[df3['temp_flag'] == ''].empty:
             row_to_move = df3[df3['temp_flag'] == ''].sample(n=1)
             df1 = pd.concat([df1, row_to_move])
             df3 = df3.drop(row_to_move.index)
