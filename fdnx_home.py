@@ -79,7 +79,6 @@ if uploaded_file is not None:
                 mime="application/vnd.ms-excel"
             )
                 
-    with st.form(key='simulator_form'): 
 
                 
 
