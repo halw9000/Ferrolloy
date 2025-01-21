@@ -120,8 +120,7 @@ if uploaded_file is not None:
                 st.header("Average Pour Weight:")
                 st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
                 to_download = 1
-            else:
-                st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
+
     
 if to_download == 1:
     with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
