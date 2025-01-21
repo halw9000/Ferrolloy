@@ -172,7 +172,7 @@ def fdnx_simulator(test_schedule):
     lane_6 = FDNX_3_lanes[1]
 
     # Initialize ladles DataFrame
-    ladles = pd.dataframe({
+    ladles = pd.DataFrame({
         'ladle_number': pd.series(dtype='int'),  
         'ladle_weight': pd.series(dtype='float'),
         'ladle_start_weight': pd.series(dtype='float'),  
