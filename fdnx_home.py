@@ -85,7 +85,6 @@ if uploaded_file is not None:
             # Get the current timestamp
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
            # Close the Pandas Excel writer and output the Excel file to the buffer
-            writer.close()
             st.download_button(
                 label= ('Download Schedule and Simulation Data for: ' + selected_iron),
                 data=buffer,
