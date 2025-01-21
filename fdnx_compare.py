@@ -22,7 +22,8 @@ with col1:
     com1_schedule = [com1_fdnx1,com1_fdnx2,com1_fdnx3]
     with st.spinner("Simulating..."):
         com1_ladles, com1_lanes, com1_sim_seconds = fx.fdnx_simulator(com1_schedule)   
-    st.write("Schedule 1: " + str(len(com1_ladles)) + " ladles")
+    st.write("Schedule 1: ")
+    st.write("Ladles: " + str(len(com1_ladles)))
 with col2:
   com_file1 = st.file_uploader("Upload FDNX Schedule 2", type={"xlsx"})
 
