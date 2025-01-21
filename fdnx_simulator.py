@@ -59,10 +59,10 @@ def pourable_carts(lanes, ladle_time):
 ############################################################################################################
 ##LADLE FUNCTIONS
 
-def fill_ladle(current_time, ladle_number):
+def fill_ladle(current_time, ladle_number, last_ladle_start):
     weight = min(np.random.normal(fc.ladle_avg_weight, fc.ladle_weight_dev), fc.ladle_capacity)
     temperature = np.random.normal(fc.ladle_start_temp_avg, fc.ladle_start_temp_dev)
-    current_time = current_time + fc.ladle_refill_time
+    current_time = max(current_time + fc.ladle_refill_time, last_ladle_start + fc.furnace_ready_sec)
     return {'ladle_number': ladle_number, 'ladle_weight': weight, 'ladle_start_weight': weight, 'ladle_temp': temperature, 'ladle_start_temp': temperature, 'start_time': current_time, 'molds_filled': 0, 'total_mold_wt': 0, 'end_time': None}
 
 def update_ladle(ladle, mold_wt, current_time):
@@ -176,7 +176,7 @@ def fdnx_simulator(test_schedule):
     current_time = 0
     ladle_number = 1
     # Create the first ladle
-    current_ladle = fill_ladle(current_time, ladle_number)
+    current_ladle = fill_ladle(current_time, ladle_number, 0)
 
     # Simulation loop
     iterations = 0
@@ -217,7 +217,8 @@ def fdnx_simulator(test_schedule):
                         # Refill the ladle if it cannot pour the next mold
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
                         ladle_number += 1
-                        current_ladle = fill_ladle(current_time, ladle_number)
+                        last_ladle_start = current_ladle['start_time']
+                        current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
                         # Continue pouring the same mold after refilling the ladle
                         continue
                 
