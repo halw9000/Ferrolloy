@@ -18,7 +18,7 @@ st.write(
 )
 
 st.header("Raw Jobs Data Upload")
-uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
+uploaded_file = st.file_uploader("Upload Raw Jobs File:", type={"xlsx"})
 st.write("Brett, remember you need to overwrite the 'cores required' column with 1's an 0's for now") 
 
 buffer = io.BytesIO()
