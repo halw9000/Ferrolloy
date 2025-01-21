@@ -37,6 +37,14 @@ with col3:
   com_file1 = st.file_uploader("Upload FDNX Schedule 3", type={"xlsx"})
 
 
+if 'mold_wt_chart_data' not in st.session_state:
+else:
+  st.header("Poured Amount By Ladle:")
+  st.line_chart(st.session_state.mold_wt_chart_data , x="ladle_number")
+  st.dataframe(st.session_state.mold_wt_chart_data)
+
+
+
 if 'ladles' not in st.session_state and is_comparing == 0:
     st.warn('No Schedule has been generated to compare.')
 else:
@@ -56,9 +64,7 @@ else:
   
   
     #CHARTS
-st.header("Poured Amount By Ladle:")
-st.line_chart(st.session_state.mold_wt_chart_data , x="ladle_number")
-st.dataframe(st.session_state.mold_wt_chart_data)
+
     #st.header("Molds Filled Per Ladle:")
     #st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
     #st.header("Average Pour Weight:")
