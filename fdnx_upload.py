@@ -88,7 +88,7 @@ with st.form(key='replay_sim_form'):
     replay_button = st.form_submit_button(label='Show Prior Schedule and Simulation')
     if replay_button:
         if 'fdnx1' not in st.session_state:
-            st.warn('No prior simulation found. Generate a simulation before...')
+            st.warning('No prior simulation found. Generate a simulation.')
         else:
             to_download = 1
             #retrieve session state
