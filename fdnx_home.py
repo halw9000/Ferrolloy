@@ -13,7 +13,16 @@ st.set_page_config(
     page_icon="🛠",
 )
 
-st.sidebar.header("Ferroloy")
+
+with st.sidebar:
+    st.sidebar.header("Ferroloy")
+    st.page_link('fdnx_home.py', label='FDNX Scheduler', icon='⏰')
+    st.page_link('pages/simulation.py', label='Deck Pour Simulation', icon='🧰️')
+
+st.title(f'🔥 Individual Checker')
+
+    # your content
+
 
 st.write("# Ferroloy FDNX Scheduler")
 st.write(
