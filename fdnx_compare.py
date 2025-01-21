@@ -28,6 +28,7 @@ if 'ladles' not in st.session_state:
 else:
     to_download = 1
     ladles = st.session_state.ladles
+    lanes = st.session_state.lanes
     fdnx1 = st.session_state.fdnx1
     fdnx2 = st.session_state.fdnx2
     fdnx3 = st.session_state.fdnx3
