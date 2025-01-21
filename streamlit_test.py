@@ -34,12 +34,12 @@ if uploaded_file is not None:
         submit_button = st.form_submit_button(label='Submit')
         if submit_button:
             with st.spinner('Generating schedules for: ' + selected_iron):
-                schedules_made = fs.get_FDNX_schedule(selected_iron,df_jobs)
+                schedules_made, total_attempts = fs.get_FDNX_schedule(selected_iron,df_jobs)
                 fdnx1 = schedules_made[0]
                 fdnx2 = schedules_made[1]
                 fdnx3 = schedules_made[2]
                 
-            st.success("Done! Schedules displayed and available for download.")
+            st.success("Done! Attempts: " + total_attempts + ". Schedules displayed and available for download.")
             st.header("FDNX 1 Schedule")
             st.write(schedule_info(fdnx1))
             st.dataframe(fdnx1)
