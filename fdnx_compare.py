@@ -33,12 +33,12 @@ with col1:
     new_mold_wt_chart_data = st.session_state.mold_wt_chart_data.merge(com1_mold_wt_chart_data,on="ladle_number",how="outer")
     st.session_state.mold_wt_chart_data = new_mold_wt_chart_data
 
-    com1_mold_count_chart_data = com1_ladles[['ladle_number', 'total_mold_wt']]
+    com1_mold_count_chart_data = com1_ladles[['ladle_number', 'molds_filled']]
     com1_mold_count_chart_data.rename(columns={'ladle_number': 'ladle_number', 'molds_filled': 'File_1'}, inplace=True)
     new_mold_count_chart_data = st.session_state.mold_count_chart_data.merge(com1_mold_count_chart_data,on="ladle_number",how="outer")
     st.session_state.com1_mold_count_chart_data = new_mold_count_chart_data
 
-    com1_mold_avgwt_chart_data = com1_ladles[['ladle_number', 'total_mold_wt']]
+    com1_mold_avgwt_chart_data = com1_ladles[['ladle_number', 'avg_mold_wt']]
     com1_mold_avgwt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'avg_mold_wt': 'File_1'}, inplace=True)
     new_mold_avgwt_chart_data = st.session_state.mold_avgwt_chart_data.merge(com1_mold_avgwt_chart_data,on="ladle_number",how="outer")
     st.session_state.mold_avgwt_chart_data = new_mold_avgwt_chart_data
