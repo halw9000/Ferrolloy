@@ -31,6 +31,7 @@ if uploaded_file is not None:
     with st.form(key='sheet_selector_form'):
         selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","80-55-06","G-35"])
         st.session_state.selected_iron = selected_iron
+        selected_iron = st.session_state.selected_iron
         submit_button = st.form_submit_button(label='Generate Schedule & Simulate')
         if submit_button:
             to_download = 0
