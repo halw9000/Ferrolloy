@@ -41,6 +41,12 @@ if uploaded_file is not None:
                 st.session_state.fdnx1 = fdnx1
                 st.session_state.fdnx2 = fdnx2
                 st.session_state.fdnx3 = fdnx3
+                fdnx1 = st.session_state.fdnx1 
+                fdnx2 = st.session_state.fdnx2 
+                fdnx3 = st.session_state.fdnx3 
+                st.session_state.total_attempts = total_attempts
+                total_attempts = st.session_state.total_attempts
+                
             if total_attempts < fs.max_attempts: 
                 st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
                 st.write("Brett! right now these schedules are weighted by a measure I made up called 'deck time' which we will need to discuss. It's basically how long molds take to pour and sit in their jacket. I can weight by other things--we will need to find what works. Feel free to click generate/simulate as many times as you want, won't hurt anything.")
@@ -57,6 +63,8 @@ if uploaded_file is not None:
                         ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)   
                         st.session_state.ladles = ladles
                         st.session_state.lanes = lanes
+                        ladles = st.session_state.ladles
+                        lanes = st.session_state.lanes
                 st.header("Simulated Ladles:")
                 st.write("Brett-- This is a the simulation. Logic needs improved as well as things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring. We may find we want to collect other data as well. Teh simulation logic right now is not treating the furnace right I do not think, and therefore we see more pours where pour weight is ~400.")
                 st.dataframe(ladles)
