@@ -71,14 +71,14 @@ if uploaded_file is not None:
                     file_name= "FDNXSchedule_" + timestamp +".xlsx",
                     mime="application/vnd.ms-excel"
                   )
-        with st.form(key='simulator_form'): 
-            simulate_button = st.form_submit_button(label='Simulate This Schedule')
-            if simulate_button:
-                with st.spinner("Simulation running. Should take ~30s"):
-                    ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
-                st.header("Ladles Table:")
-                st.dataframe(ladles)
-                
+    with st.form(key='simulator_form'): 
+        simulate_button = st.form_submit_button(label='Simulate This Schedule')
+        if simulate_button:
+            with st.spinner("Simulation running. Should take ~30s"):
+                ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
+            st.header("Ladles Table:")
+            st.dataframe(ladles)
+            
 
 
 #chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
