@@ -89,7 +89,7 @@ if 'mold_wt_chart_data' in st.session_state:
 
 
 if 'ladles' not in st.session_state:
-    st.warn('No Schedule has been generated to compare.')
+    st.warning('No Schedule has been generated to compare.')
 else:
     to_download = 1
     ladles = st.session_state.ladles
