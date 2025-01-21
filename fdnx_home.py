@@ -56,11 +56,11 @@ if uploaded_file is not None:
             to_download = 1
             simulate_button = st.form_submit_button(label='Simulate This Schedule')
             if simulate_button:
-                #with st.spinner("Simulation running. Should take ~30s"):
-                    #st.write("simulated")
-                    #ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
+                with st.spinner("Simulation running. Should take ~30s"):
+                    st.write("simulated")
+                    ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
                 st.header("Ladles Table:")
-                #st.dataframe(ladles)
+                st.dataframe(ladles)
     
     if to_download == 1:
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
