@@ -63,7 +63,7 @@ def fill_ladle(current_time, ladle_number, last_ladle_start):
     weight = min(np.random.normal(fc.ladle_avg_weight, fc.ladle_weight_dev), fc.ladle_capacity)
     temperature = np.random.normal(fc.ladle_start_temp_avg, fc.ladle_start_temp_dev)
     current_time = max(current_time + fc.ladle_refill_time, last_ladle_start + fc.furnace_ready_sec)
-    return {'ladle_number': ladle_number, 'ladle_weight': weight, 'ladle_start_weight': weight, 'ladle_temp': temperature, 'ladle_start_temp': temperature, 'start_time': current_time, 'molds_filled': 0, 'total_mold_wt': 0, 'end_time': None}, current_time
+    return {'ladle_number': ladle_number, 'ladle_weight': weight, 'ladle_start_weight': weight, 'ladle_temp': temperature, 'ladle_start_temp': temperature, 'start_time': current_time, 'molds_filled': 0, 'total_mold_wt': 0, 'end_time': None}
 
 def update_ladle(ladle, mold_wt, current_time):
     ladle['ladle_weight'] -= mold_wt
@@ -218,7 +218,7 @@ def fdnx_simulator(test_schedule):
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
                         ladle_number += 1
                         last_ladle_start = current_ladle['start_time']
-                        current_ladle, current_time = fill_ladle(current_time, ladle_number, last_ladle_start)
+                        current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
                         # Continue pouring the same mold after refilling the ladle
                         continue
                 
