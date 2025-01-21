@@ -13,7 +13,7 @@ import streamlit as st
 # STD Dev of expected deck weight?
 ############################################################################################################
 ## Weights for balancing schedules
-schd_var_threshold = .002  # Percent variance per schedule allowed between total mold hours on each FDNX machine
+schd_var_threshold = .004  # Percent variance per schedule allowed between total mold hours on each FDNX machine
 mold_hour_weight = 0
 pour_weight_weight = 0
 crt_count_weight = 1
