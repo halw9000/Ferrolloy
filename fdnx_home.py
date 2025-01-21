@@ -82,6 +82,7 @@ if to_download == 1:
         lanes[3].to_excel(writer, sheet_name='sim_lane4')
         lanes[4].to_excel(writer, sheet_name='sim_lane5')
         lanes[5].to_excel(writer, sheet_name='sim_lane6')
+        writer.close()
         # Get the current timestamp
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
        # Close the Pandas Excel writer and output the Excel file to the buffer
