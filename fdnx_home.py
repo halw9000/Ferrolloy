@@ -53,7 +53,12 @@ if uploaded_file is not None:
             st.write(schedule_info(fdnx3))
             st.dataframe(fdnx3)
             to_download = 1
-
+            simulate_button = st.form_submit_button(label='Simulate This Schedule')
+            if submit_button:
+                        with st.spinner("Simulation running. Should take ~30s"):
+                            ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
+                        st.header("Ladles Table:")
+                        st.dataframe(ladles)
     if to_download == 1:
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
         # Write each dataframe to a different worksheet.
@@ -71,12 +76,7 @@ if uploaded_file is not None:
                 mime="application/vnd.ms-excel"
               )
 
-    simulate_button = st.form_submit_button(label='Simulate This Schedule')
-    if submit_button:
-                with st.spinner("Simulation running. Should take ~30s"):
-                    ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
-                st.header("Ladles Table:")
-                st.dataframe(ladles)
+
 
 
 #chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
