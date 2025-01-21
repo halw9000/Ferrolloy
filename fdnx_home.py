@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 
-with st.sidebar:
+with st.navingation:
     st.sidebar.header("Ferroloy")
     st.page_link('fdnx_home.py', label='FDNX Scheduler', icon='⏰')
     st.page_link('pages/simulation.py', label='Deck Simulator', icon='🧰️')
