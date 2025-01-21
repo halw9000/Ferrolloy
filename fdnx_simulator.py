@@ -219,7 +219,8 @@ def fdnx_simulator(test_schedule):
                         ladle_number += 1
                         last_ladle_start = current_ladle['start_time']
                         current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
-                        # Continue pouring the same mold after refilling the ladle
+                        current_time += fc.ladle_refill_time
+                        
                         continue
                 
                 # Re-check the top rows after refilling the ladle
