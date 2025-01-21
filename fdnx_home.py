@@ -52,7 +52,6 @@ if uploaded_file is not None:
                 st.header("FDNX 3 Schedule")
                 st.write(schedule_info(fdnx3))
                 st.dataframe(fdnx3)
-                to_download = 1
                 with st.spinner("Simulation running. Should take ~20-30s max"):
                         ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)    
                 st.header("Simulated Ladles:")
@@ -65,6 +64,7 @@ if uploaded_file is not None:
                 st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
                 st.header("Molds Filled Per Ladle:")
                 st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
+                to_download = 1
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
 
