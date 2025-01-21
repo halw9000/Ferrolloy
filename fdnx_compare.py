@@ -15,7 +15,9 @@ st.write("Upload up to three FDNX schedule files to simulate and compare.")
 col1, col2, col3 = st.columns(3)
 with col1:
   com_file1 = st.file_uploader("Upload FDNX Schedule 1", type={"xlsx"})
-
+  if com_file1 is not None:
+    com1_fdnx1 = pd.read_excel(com_file1, sheet_name="FDNX1")
+    st.dataframe(com1_fdnx1)
 with col2:
   com_file1 = st.file_uploader("Upload FDNX Schedule 2", type={"xlsx"})
 
@@ -47,7 +49,7 @@ else:
 if to_download == 1:
     with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     # Write each dataframe to a different worksheet.
-        fdnx1.to_excel(writer, sheet_name='FCNX1')
+        fdnx1.to_excel(writer, sheet_name='FDNX1')
         fdnx2.to_excel(writer, sheet_name='FDNX2')
         fdnx3.to_excel(writer, sheet_name='FDNX3')
         ladles.to_excel(writer, sheet_name='sim_ladles')
