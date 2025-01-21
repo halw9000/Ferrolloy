@@ -28,7 +28,7 @@ with col1:
     st.write("Ladles: " + str(len(com1_ladles)))
     com1_mold_wt_chart_data = com1_ladles[['ladle_number', 'total_mold_wt']]
     com1_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'File_1'}, inplace=True)
-    chart_data = st.session_state.mold_wt_chart_data.join(com1_mold_wt_chart_data,on="ladle_number",how="outer")
+    chart_data = st.session_state.mold_wt_chart_data.merge(com1_mold_wt_chart_data,on="ladle_number",how="outer")
     st.dataframe(chart_data)
     
 with col2:
