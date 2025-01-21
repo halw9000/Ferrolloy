@@ -215,7 +215,7 @@ def fdnx_simulator(test_schedule):
                         # Update the current time
                     else:
                         # Refill the ladle if it cannot pour the next mold
-                        if ladle_number = 1:
+                        if ladle_number == 1:
                             ladles = current_ladle
                         else:
                             ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
