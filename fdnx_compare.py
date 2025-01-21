@@ -29,7 +29,7 @@ with col1:
     com1_mold_wt_chart_data = com1_ladles[['ladle_number', 'total_mold_wt']]
     com1_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'File_1'}, inplace=True)
     st.session_state.mold_wt_chart_data.merge(com1_mold_wt_chart_data,on="ladle_number",how="outer")
-    st.dataframe(st.session_state.mold_wt_chart_data)
+    st.dataframe(com1_mold_wt_chart_data)
 with col2:
   com_file1 = st.file_uploader("Upload FDNX Schedule 2", type={"xlsx"})
 
