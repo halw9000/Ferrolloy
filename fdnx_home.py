@@ -54,7 +54,7 @@ if uploaded_file is not None:
             st.write(schedule_info(fdnx3))
             st.dataframe(fdnx3)
             to_download = 1
-        continue
+            continue
     
     
     if to_download == 1:
