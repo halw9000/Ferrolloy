@@ -65,7 +65,7 @@ if uploaded_file is not None:
                 st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
                 st.header("Molds Filled Per Ladle:")
                 st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
-                st.header("Molds Filled AVG Weight:")
+                st.header("Mold Filled AVG Weight:")
                 st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
                 to_download = 1
             else:
