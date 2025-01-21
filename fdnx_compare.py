@@ -54,8 +54,8 @@ else:
   
   
     #CHARTS
-    st.header("Poured Amount By Ladle:")
-    st.line_chart(st.session_state.mold_wt_chart_data , x="ladle_number")
+st.header("Poured Amount By Ladle:")
+st.line_chart(st.session_state.mold_wt_chart_data , x="ladle_number")
     #st.header("Molds Filled Per Ladle:")
     #st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
     #st.header("Average Pour Weight:")
