@@ -60,10 +60,13 @@ if uploaded_file is not None:
                 st.write("Brett--at the very bottom is a download button which contains each of the above tables as well as a page for each 'simulated lane' where you can see when carts were filled, by what ladle, etc. Eventually we can find ways to analyze this data better so you can make adjustments and reevaluate the schedule. The chart below this shows you the expected pour weight by ladle. We will also do another with how many molds are filled with each ladle--get an idea of where there are double-taps and or not all molds filled.")
                 mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
                 mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
+                mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
                 st.header("Poured Amount By Ladle:")
                 st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
                 st.header("Molds Filled Per Ladle:")
                 st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
+                st.header("Molds Filled AVG Weight:")
+                st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
                 to_download = 1
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
