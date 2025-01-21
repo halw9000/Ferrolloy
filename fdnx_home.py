@@ -56,7 +56,7 @@ if uploaded_file is not None:
                 with st.spinner("Simulation running. Should take ~20-30s max"):
                         ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)    
                 st.header("Simulated Ladles:")
-                st.write("Brett-- This is a rudimentary siimulation where the ladles are refilled and fill carts as they become available. Logic needs improved and things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring.)
+                st.write("Brett-- This is a rudimentary siimulation where the ladles are refilled and fill carts as they become available. Logic needs improved and things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring.")
                 st.dataframe(ladles)
                 st.write("Brett--below is a download button which contains each of the above tables as well as a page for each 'simulated lane' where you can see when carts were filled, by what ladle, etc. Eventually we can find ways to analyze this data better so you can make adjustments and reevaluate the schedule.")
             else:
