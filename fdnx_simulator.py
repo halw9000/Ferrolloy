@@ -172,7 +172,7 @@ def fdnx_simulator(test_schedule):
     lane_6 = FDNX_3_lanes[1]
 
     # Initialize ladles DataFrame
-    ladles = pd.DataFrame(columns=['ladle_number', 'ladle_weight', 'ladle_start_weight', 'ladle_temp', 'ladle_start_temp', 'start_time', 'molds_filled', 'total_mold_wt', 'end_time'])
+    #ladles = pd.DataFrame(columns=['ladle_number', 'ladle_weight', 'ladle_start_weight', 'ladle_temp', 'ladle_start_temp', 'start_time', 'molds_filled', 'total_mold_wt', 'end_time'])
     current_time = 0
     ladle_number = 1
     # Create the first ladle
@@ -215,7 +215,10 @@ def fdnx_simulator(test_schedule):
                         # Update the current time
                     else:
                         # Refill the ladle if it cannot pour the next mold
-                        ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
+                        if ladle_number = 1:
+                            ladles = current_ladle
+                        else:
+                            ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
                         ladle_number += 1
                         last_ladle_start = current_ladle['start_time']
                         current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
