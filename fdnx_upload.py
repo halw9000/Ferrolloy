@@ -84,6 +84,44 @@ if uploaded_file is not None:
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
 
+        replay_button = st.form_submit_button(label='Show Prior Schedule and Simulation')
+        if replay_button:
+            if 'fdnx1' not in st.session_state:
+                st.warn('No prior simulation found. Generate a simulation before...')
+            else:
+                to_download = 1
+                #retrieve session state
+                fdnx1 = st.session_state.fdnx1 
+                fdnx2 = st.session_state.fdnx2 
+                fdnx3 = st.session_state.fdnx3 
+                ladles = st.session_state.ladles
+                lanes = st.session_state.lanes
+                total_attempts = st.session_state.total_attempts    
+                st.header("FDNX 1 Schedule")
+                st.write(schedule_info(fdnx1))
+                st.dataframe(fdnx1)
+                st.header("FDNX 2 Schedule")
+                st.write(schedule_info(fdnx2))
+                st.dataframe(fdnx2)
+                st.header("FDNX 3 Schedule")
+                st.write(schedule_info(fdnx3))
+                st.dataframe(fdnx3)
+                st.header("Simulated Ladles:")
+                st.dataframe(ladles)
+                # GET Data for Charts
+                mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
+                mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
+                mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
+                #CHARTS
+                st.header("Poured Amount By Ladle:")
+                st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
+                st.header("Molds Filled Per Ladle:")
+                st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
+                st.header("Average Pour Weight:")
+                st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
+                to_download = 1
+            else:
+                st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
     
 if to_download == 1:
     with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
