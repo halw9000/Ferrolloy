@@ -30,6 +30,7 @@ if uploaded_file is not None:
     st.dataframe(df_jobs)
     with st.form(key='sheet_selector_form'):
         selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","80-55-06","G-35"])
+        st.session_state.selected_iron = selected_iron
         submit_button = st.form_submit_button(label='Generate Schedule & Simulate')
         if submit_button:
             to_download = 0
@@ -140,6 +141,7 @@ if to_download == 1:
         # Get the current timestamp
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
        # Close the Pandas Excel writer and output the Excel file to the buffer
+        selected_iron = st.session_state.selected_iron
         st.download_button(
             label= ('Download Schedule and Simulation Data for: ' + selected_iron),
             data=buffer,
