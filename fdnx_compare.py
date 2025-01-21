@@ -38,6 +38,7 @@ with col3:
 
 
 if 'mold_wt_chart_data' not in st.session_state:
+  #nothing
 else:
   st.header("Poured Amount By Ladle:")
   st.line_chart(st.session_state.mold_wt_chart_data , x="ladle_number")
