@@ -56,7 +56,7 @@ if uploaded_file is not None:
                 with st.spinner("Simulation running. Should take ~20-30s max"):
                         ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)    
                 st.header("Simulated Ladles:")
-                st.write("Brett-- This is a the simulation. Logic needs improved as well as things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring. We may find we want to collect other data as well.")
+                st.write("Brett-- This is a the simulation. Logic needs improved as well as things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring. We may find we want to collect other data as well. Teh simulation logic right now is not treating the furnace right I do not think, and therefore we see more pours where pour weight is ~400.")
                 st.dataframe(ladles)
                 st.write("Brett--at the very bottom is a download button which contains each of the above tables as well as a page for each 'simulated lane' where you can see when carts were filled, by what ladle, etc. Eventually we can find ways to analyze this data better so you can make adjustments and reevaluate the schedule. The chart below this shows you the expected pour weight by ladle. We will also do another with how many molds are filled with each ladle--get an idea of where there are double-taps and or not all molds filled.")
                 mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
