@@ -13,11 +13,11 @@ st.set_page_config(
     page_icon="🛠",
 )
 
-pg = st.navigation([
+st.navigation([
     st.Page('fdnx_home.py', title='FDNX Scheduler', icon='⏰'),
     st.Page('pages/simulation.py', title='Deck Simulator', icon='🧰️')
 ])
-pg.run() 
+
 
 
 
