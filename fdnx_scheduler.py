@@ -16,8 +16,8 @@ import streamlit as st
 schd_var_threshold = .002  # Percent variance per schedule allowed between total mold hours on each FDNX machine
 mold_hour_weight = 0
 pour_weight_weight = 0
-crt_count_weight = 1
-deck_time_weight = 0
+crt_count_weight = 0
+deck_time_weight = 1
 possible_schedules = []
 max_attempts = 2500
 ############################################################################################################
