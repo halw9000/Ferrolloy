@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import time, io, datetime
 import fdnx_scheduler as fs
+import fdnx_simulator as fx
 
 def schedule_info(df):
     info = "Pour Weight: " + str(df['pour_wt'].sum()) + ",  Total Molds: " + str(df['mold_qty'].sum()) + ",  Mold Hours: " + str(round(df['mold_hrs'].sum(),1)) + ",  Pattern Switches: " + str(len(df)-1)
@@ -69,7 +70,13 @@ if uploaded_file is not None:
                 mime="application/vnd.ms-excel"
               )
 
-   
+    simulate_button = st.form_submit_button(label='Simulate This Schedule')
+    if submit_button:
+                with st.spinner('Simulation running. Should take ~30s):
+                    ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
+                st.header("Ladles Table:")
+                st.dataframe(ladles)
+
 
 #chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 #chart1 = st.line_chart(chart_data1)
