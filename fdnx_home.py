@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time, io, datetime
-import fdnx_scheduler as fs
 import fdnx_simulator as fx
+import fdnx_scheduler as fs
+
 
 def schedule_info(df):
     info = "Pour Weight: " + str(df['pour_wt'].sum()) + ",  Total Molds: " + str(df['mold_qty'].sum()) + ",  Mold Hours: " + str(round(df['mold_hrs'].sum(),1)) + ",  Pattern Switches: " + str(len(df)-1)
