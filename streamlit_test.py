@@ -9,7 +9,7 @@ def schedule_info(df):
     return info
     
 st.set_page_config(
-    page_title="Ferroloy Scheduler",
+    page_title="FAKE Scheduler",
     page_icon="🛠",
 )
 
