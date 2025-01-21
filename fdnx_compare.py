@@ -7,6 +7,7 @@ import fdnx_scheduler as fs
 
 buffer = io.BytesIO()
 to_download = 0
+is_comparing = 0
 
 st.write("# Compare Schedules Here")
 st.write("Upload up to three FDNX schedule files to simulate and compare.")
@@ -16,6 +17,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
   com_file1 = st.file_uploader("Upload FDNX Schedule 1", type={"xlsx"})
   if com_file1 is not None:
+    is_comparing = 1
     com1_fdnx1 = pd.read_excel(com_file1, sheet_name="FDNX1")
     com1_fdnx2 = pd.read_excel(com_file1, sheet_name="FDNX2")
     com1_fdnx3 = pd.read_excel(com_file1, sheet_name="FDNX3")
@@ -35,7 +37,7 @@ with col3:
   com_file1 = st.file_uploader("Upload FDNX Schedule 3", type={"xlsx"})
 
 
-if 'ladles' not in st.session_state:
+if 'ladles' not in st.session_state and is_comparing == 0:
     st.warn('No Schedule has been generated to compare.')
 else:
     to_download = 1
