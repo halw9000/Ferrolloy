@@ -238,7 +238,7 @@ def fdnx_simulator(test_schedule):
                 top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
         break
     ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
-    ladles['avg_mold_wt'] = ladles.apply(lambda row: row['total_mold_wt']  row['molds_filled'], axis=1)
+    ladles['avg_mold_wt'] = ladles.apply(lambda row: row['total_mold_wt'] / row['molds_filled'], axis=1)
     
     lanes = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]
 
