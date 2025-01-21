@@ -60,7 +60,7 @@ if uploaded_file is not None:
                 st.dataframe(ladles)
                 st.write("Brett--below is a download button which contains each of the above tables as well as a page for each 'simulated lane' where you can see when carts were filled, by what ladle, etc. Eventually we can find ways to analyze this data better so you can make adjustments and reevaluate the schedule.")
                 mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
-                st.line_chart(mold_wt_chart_data)
+                st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
 
