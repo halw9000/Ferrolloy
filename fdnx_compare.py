@@ -54,10 +54,10 @@ if 'mold_wt_chart_data' in st.session_state:
   st.line_chart(st.session_state.mold_wt_chart_data , x="ladle_number")
   
   st.header("Molds Filled Per Ladle:")
-  st.line_chart(st.session_state.mold_count_chart_data, x="ladle_number",y="molds_filled")
+  st.line_chart(st.session_state.mold_count_chart_data, x="ladle_number")
   
   st.header("Average Pour Weight:")
-  st.line_chart(st.session_state.mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
+  st.line_chart(st.session_state.mold_avgwt_chart_data, x="ladle_number")
 
 
 
