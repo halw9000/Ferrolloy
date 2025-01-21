@@ -19,6 +19,7 @@ pour_weight_weight = 0
 crt_count_weight = 1
 deck_time_weight = 0
 possible_schedules = []
+max_attempts = 1500
 ############################################################################################################
 
 ##IMPORT & TRANSFORM DATA
@@ -110,7 +111,7 @@ def balance_FDNX(df, material, total_attempts):
         combined_wt2 = ((mh2 / df['mold_hrs'].sum()) * mold_hour_weight) + ((wt2 / df['pour_wt'].sum()) * pour_weight_weight) + ((crt2 / df['carts_to_fill_order'].sum()) * crt_count_weight) + ((dt2 / df['total_deck_time'].sum()) * deck_time_weight)
         combined_wt3 = ((mh3 / df['mold_hrs'].sum()) * mold_hour_weight) + ((wt3 / df['pour_wt'].sum()) * pour_weight_weight) + ((crt3 / df['carts_to_fill_order'].sum()) * crt_count_weight) + ((dt3 / df['total_deck_time'].sum()) * deck_time_weight)
 
-        if (abs(combined_wt1 - combined_wt2) <= schd_var_threshold and abs(combined_wt2 - combined_wt3) <= schd_var_threshold and abs(combined_wt1 - combined_wt3) <= schd_var_threshold) or i >= 1500:
+        if (abs(combined_wt1 - combined_wt2) <= schd_var_threshold and abs(combined_wt2 - combined_wt3) <= schd_var_threshold and abs(combined_wt1 - combined_wt3) <= schd_var_threshold) or i >= max_attempts:
             print("Attempts:", i, " mh1:", mh1, "wt1:",wt1, "crt1:",crt1, "mh2:", mh2, "wt2:",wt2, "crt2:",crt2, "mh3:", mh3, "wt3:",wt3, "crt3:",crt3)
 
             break
