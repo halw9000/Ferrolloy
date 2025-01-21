@@ -10,10 +10,6 @@ def schedule_info(df):
     info = "Pour Weight: " + str(df['pour_wt'].sum()) + ",  Total Molds: " + str(df['mold_qty'].sum()) + ",  Mold Hours: " + str(round(df['mold_hrs'].sum(),1)) + ",  Pattern Switches: " + str(len(df)-1) + "  Deck Time: " + str(round(df['total_deck_time'].sum() / 3600,1)) + " hrs"
     return info
     
-st.set_page_config(
-    page_title="Ferroloy Scheduler",
-    page_icon="🛠",
-)
 
 st.write("# Ferroloy FDNX Scheduler")
 st.write(
