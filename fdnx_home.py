@@ -25,7 +25,7 @@ uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
 st.write("Brett, remember you need to overwrite the 'cores required' column with 1's an 0's for now") 
 
 buffer = io.BytesIO()
-to_download = 0
+
 
 if uploaded_file is not None:
     df_jobs = fs.import_FDNX_jobs(uploaded_file)
@@ -82,17 +82,6 @@ if uploaded_file is not None:
             
 
 
-#chart_data1 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-#chart1 = st.line_chart(chart_data1)
-
-#compare_file = st.file_uploader("(Optional) Upload a Comparison Schedule", type={"xlsx"})
-#chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-#chart2 = st.line_chart(chart_data2)
-
-
-
-#chart1 = st.line_chart(chart_data1)
-#chart2 = st.line_chart(chart_data2)
 
 
 
