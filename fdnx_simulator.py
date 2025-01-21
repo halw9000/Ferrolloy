@@ -172,18 +172,18 @@ def fdnx_simulator(test_schedule):
     lane_6 = FDNX_3_lanes[1]
 
     # Initialize ladles DataFrame
-    ladle_dytpe = {
-        'ladle_number': int,  
-        'ladle_weight': float,
-        'ladle_start_weight': float,  
-        'ladle_temp': float,
-        'ladle_start_temp': float,
-        'start_time': float,
-        'molds_filled': float,
-        'total_mold_wt': float,
-        'end_time': float
-    }
-    ladles = pd.DataFrame(dtype=ladle_dtype)
+    ladles = pd.dataframe({
+        'ladle_number': pd.series(dtype='int'),  
+        'ladle_weight': pd.series(dtype='float'),
+        'ladle_start_weight': pd.series(dtype='float'),  
+        'ladle_temp': pd.series(dtype='float'),
+        'ladle_start_temp': pd.series(dtype='float'),
+        'start_time': pd.series(dtype='float'),
+        'molds_filled': pd.series(dtype='float'),
+        'total_mold_wt': pd.series(dtype='float'),
+        'end_time': pd.series(dtype='float')
+    })
+    #ladles = pd.DataFrame(dtype=ladle_dtype)
     current_time = 0
     ladle_number = 1
     # Create the first ladle
