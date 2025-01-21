@@ -12,6 +12,7 @@ st.set_page_config(
     page_title="Ferroloy Scheduler",
     page_icon="🛠",
 )
+st.page_link("fdnx_home.py", label="Home", icon="🏠")
 st.page_link("fdnx_simulator.py", label="Simulator", icon="🎬")
     # your content
 
