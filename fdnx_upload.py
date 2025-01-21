@@ -127,7 +127,7 @@ with st.form(key='replay_sim_form'):
 if to_download == 1:
     with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     # Write each dataframe to a different worksheet.
-        fdnx1.to_excel(writer, sheet_name='FCNX1')
+        fdnx1.to_excel(writer, sheet_name='FDNX1')
         fdnx2.to_excel(writer, sheet_name='FDNX2')
         fdnx3.to_excel(writer, sheet_name='FDNX3')
         ladles.to_excel(writer, sheet_name='sim_ladles')
