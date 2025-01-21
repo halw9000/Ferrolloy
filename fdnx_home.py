@@ -59,6 +59,8 @@ if uploaded_file is not None:
                 st.write("Brett-- This is a the simulation. Logic needs improved as well as things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring. We may find we want to collect other data as well.")
                 st.dataframe(ladles)
                 st.write("Brett--below is a download button which contains each of the above tables as well as a page for each 'simulated lane' where you can see when carts were filled, by what ladle, etc. Eventually we can find ways to analyze this data better so you can make adjustments and reevaluate the schedule.")
+                mold_wt_chart_data = ladle_subset = ladles[['ladle_number', 'total_mold_wt']]
+                st.line_chart(mold_wt_chart_data)
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
 
