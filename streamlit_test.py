@@ -20,7 +20,6 @@ st.write(
     """This scheduler will ingest the FDNX weekly job data and aim to create a balanced schedule across each machine. This project is still in development, so the scheduler may display odd behavior--for example, it may switch from balancing schedules on total molds to balancing on total pour weight."""
 )
 
-chart_container = st.container()
 st.header("Raw Jobs Data Upload")
 uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
 st.write("Brett, remember you need to overwrite the 'cores required' column with 1's an 0's for now") 
