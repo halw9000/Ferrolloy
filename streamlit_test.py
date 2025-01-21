@@ -42,7 +42,7 @@ if uploaded_file is not None:
             if total_attempts < fs.max_attempts: 
                 st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
             else:
-                st.warning("Max attempts were reached. Results may be suboptimal.")
+                st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
             st.header("FDNX 1 Schedule")
             st.write(schedule_info(fdnx1))
             st.dataframe(fdnx1)
