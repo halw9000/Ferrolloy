@@ -21,7 +21,7 @@ st.write(
 )
 
 chart_container = st.container()
-uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
+uploaded_file = st.file_uploader("# Upload Raw Jobs File Here", type={"xlsx"})
 
 buffer = io.BytesIO()
 to_download = 0
