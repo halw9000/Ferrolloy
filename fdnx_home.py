@@ -72,7 +72,7 @@ if uploaded_file is not None:
 
     simulate_button = st.form_submit_button(label='Simulate This Schedule')
     if submit_button:
-                with st.spinner('Simulation running. Should take ~30s):
+                with st.spinner("Simulation running. Should take ~30s"):
                     ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)
                 st.header("Ladles Table:")
                 st.dataframe(ladles)
