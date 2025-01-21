@@ -45,7 +45,7 @@ with col1:
     
 with col2:
   com_file2 = st.file_uploader("Upload FDNX Schedule B", type={"xlsx"})
-  if com_file1 is not None:
+  if com_file2 is not None:
     is_comparing = 1
     com2_fdnx1 = pd.read_excel(com_file2, sheet_name="FDNX1")
     com2_fdnx2 = pd.read_excel(com_file2, sheet_name="FDNX2")
