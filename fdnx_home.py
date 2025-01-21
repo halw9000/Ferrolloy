@@ -25,7 +25,7 @@ uploaded_file = st.file_uploader("Upload Raw Jobs File Here", type={"xlsx"})
 st.write("Brett, remember you need to overwrite the 'cores required' column with 1's an 0's for now") 
 
 buffer = io.BytesIO()
-
+to_download = 0
 
 if uploaded_file is not None:
     df_jobs = fs.import_FDNX_jobs(uploaded_file)
