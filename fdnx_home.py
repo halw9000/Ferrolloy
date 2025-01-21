@@ -53,24 +53,25 @@ if uploaded_file is not None:
             st.write(schedule_info(fdnx3))
             st.dataframe(fdnx3)
             to_download = 1
-
-    if to_download == 1:
-        with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-        # Write each dataframe to a different worksheet.
-            fdnx1.to_excel(writer, sheet_name='FCNX1')
-            fdnx2.to_excel(writer, sheet_name='FDNX2')
-            fdnx3.to_excel(writer, sheet_name='FDNX3')
-            # Get the current timestamp
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-           # Close the Pandas Excel writer and output the Excel file to the buffer
-            writer.close()
-            st.download_button(
-                label= ('Download Schedule for: ' + selected_iron),
-                data=buffer,
-                file_name= "FDNXSchedule_" + timestamp +".xlsx",
-                mime="application/vnd.ms-excel"
-              )
-        with st.form(key='simulator_form'):
+    
+    with st.form(key='simulator_form'):
+        if to_download == 1:
+            with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+            # Write each dataframe to a different worksheet.
+                fdnx1.to_excel(writer, sheet_name='FCNX1')
+                fdnx2.to_excel(writer, sheet_name='FDNX2')
+                fdnx3.to_excel(writer, sheet_name='FDNX3')
+                # Get the current timestamp
+                timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+               # Close the Pandas Excel writer and output the Excel file to the buffer
+                writer.close()
+                st.download_button(
+                    label= ('Download Schedule for: ' + selected_iron),
+                    data=buffer,
+                    file_name= "FDNXSchedule_" + timestamp +".xlsx",
+                    mime="application/vnd.ms-excel"
+                  )
+            
             simulate_button = st.form_submit_button(label='Simulate This Schedule')
             if simulate_button:
                 with st.spinner("Simulation running. Should take ~30s"):
