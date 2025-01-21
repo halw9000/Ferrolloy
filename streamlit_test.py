@@ -39,8 +39,10 @@ if uploaded_file is not None:
                 fdnx1 = schedules_made[0]
                 fdnx2 = schedules_made[1]
                 fdnx3 = schedules_made[2]
-                
-            st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
+            if total_attempts < fs.max_attempts: 
+                st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
+            else:
+                st.warning("Max attempts were reached. Results may be suboptimal.")
             st.header("FDNX 1 Schedule")
             st.write(schedule_info(fdnx1))
             st.dataframe(fdnx1)
