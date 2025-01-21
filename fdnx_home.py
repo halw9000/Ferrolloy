@@ -12,12 +12,7 @@ st.set_page_config(
     page_title="Ferroloy Scheduler",
     page_icon="🛠",
 )
-
-
-
-
-
-
+st.page_link("pages\simulation.py", label="Simulator")
     # your content
 
 
