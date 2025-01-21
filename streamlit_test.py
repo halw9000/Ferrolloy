@@ -39,7 +39,7 @@ if uploaded_file is not None:
                 fdnx2 = schedules_made[1]
                 fdnx3 = schedules_made[2]
                 
-            st.success("Done! Attempts: " + total_attempts + ". Schedules displayed and available for download.")
+            st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
             st.header("FDNX 1 Schedule")
             st.write(schedule_info(fdnx1))
             st.dataframe(fdnx1)
