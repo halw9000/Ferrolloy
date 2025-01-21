@@ -24,6 +24,10 @@ with col1:
         com1_ladles, com1_lanes, com1_sim_seconds = fx.fdnx_simulator(com1_schedule)   
     st.write("Schedule 1: ")
     st.write("Ladles: " + str(len(com1_ladles)))
+    com1_mold_wt_chart_data = com1_ladles[['ladle_number', 'total_mold_wt']]
+    com1_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'File_1'}, inplace=True)
+    st.session_state.mold_wt_chart_data.join(com1_mold_wt_chart_data,on="ladle_number",how="outer")
+
 with col2:
   com_file1 = st.file_uploader("Upload FDNX Schedule 2", type={"xlsx"})
 
@@ -40,10 +44,14 @@ else:
     fdnx1 = st.session_state.fdnx1
     fdnx2 = st.session_state.fdnx2
     fdnx3 = st.session_state.fdnx3
+    
     mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
-    mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
-    mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
+    mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'Simulated'}, inplace=True)
     st.session_state.mold_wt_chart_data = mold_wt_chart_data
+    #mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
+    #mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
+    
+  
   
     #CHARTS
     st.header("Poured Amount By Ladle:")
