@@ -42,6 +42,7 @@ if uploaded_file is not None:
                 fdnx3 = schedules_made[2]
             if total_attempts < fs.max_attempts: 
                 st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
+                st.write("Brett! right now these schedules are weighted by a measure I made up called 'deck time' which we will need to discuss")
                 st.header("FDNX 1 Schedule")
                 st.write(schedule_info(fdnx1))
                 st.dataframe(fdnx1)
@@ -55,7 +56,9 @@ if uploaded_file is not None:
                 with st.spinner("Simulation running. Should take ~20-30s max"):
                         ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)    
                 st.header("Simulated Ladles:")
+                st.write("Brett-- This is a rudimentary siimulation where the ladles are refilled and fill carts as they become available. Logic needs improved and things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring.)
                 st.dataframe(ladles)
+                st.write("Brett--below is a download button which contains each of the above tables as well as a page for each 'simulated lane' where you can see when carts were filled, by what ladle, etc. Eventually we can find ways to analyze this data better so you can make adjustments and reevaluate the schedule.")
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
 
@@ -83,7 +86,7 @@ if uploaded_file is not None:
                 file_name= "FDNXSchedule_" + timestamp +".xlsx",
                 mime="application/vnd.ms-excel"
             )
-                
+            
 
                 
 
