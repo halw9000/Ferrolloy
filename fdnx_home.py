@@ -12,9 +12,13 @@ st.set_page_config(
     page_title="Ferroloy Scheduler",
     page_icon="🛠",
 )
-    
-st.Page('fdnx_home.py', title='FDNX Scheduler', icon='⏰')
-st.Page('pages/simulation.py', title='Deck Simulator', icon='🧰️')
+
+pg = st.navigation([
+    st.Page('fdnx_home.py', title='FDNX Scheduler', icon='⏰')
+    st.Page('pages/simulation.py', title='Deck Simulator', icon='🧰️')
+])
+pg.run() 
+
 
 
     # your content
