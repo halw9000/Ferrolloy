@@ -69,28 +69,28 @@ if uploaded_file is not None:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
 
     
-    if to_download == 1:
-        with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-        # Write each dataframe to a different worksheet.
-            fdnx1.to_excel(writer, sheet_name='FCNX1')
-            fdnx2.to_excel(writer, sheet_name='FDNX2')
-            fdnx3.to_excel(writer, sheet_name='FDNX3')
-            ladles.to_excel(writer, sheet_name='sim_ladles')
-            lanes[0].to_excel(writer, sheet_name='sim_lane1')
-            lanes[1].to_excel(writer, sheet_name='sim_lane2')
-            lanes[2].to_excel(writer, sheet_name='sim_lane3')
-            lanes[3].to_excel(writer, sheet_name='sim_lane4')
-            lanes[4].to_excel(writer, sheet_name='sim_lane5')
-            lanes[5].to_excel(writer, sheet_name='sim_lane6')
-            # Get the current timestamp
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-           # Close the Pandas Excel writer and output the Excel file to the buffer
-            st.download_button(
-                label= ('Download Schedule and Simulation Data for: ' + selected_iron),
-                data=buffer,
-                file_name= "FDNXSchedule_" + timestamp +".xlsx",
-                mime="application/vnd.ms-excel"
-            )
+if to_download == 1:
+    with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+    # Write each dataframe to a different worksheet.
+        fdnx1.to_excel(writer, sheet_name='FCNX1')
+        fdnx2.to_excel(writer, sheet_name='FDNX2')
+        fdnx3.to_excel(writer, sheet_name='FDNX3')
+        ladles.to_excel(writer, sheet_name='sim_ladles')
+        lanes[0].to_excel(writer, sheet_name='sim_lane1')
+        lanes[1].to_excel(writer, sheet_name='sim_lane2')
+        lanes[2].to_excel(writer, sheet_name='sim_lane3')
+        lanes[3].to_excel(writer, sheet_name='sim_lane4')
+        lanes[4].to_excel(writer, sheet_name='sim_lane5')
+        lanes[5].to_excel(writer, sheet_name='sim_lane6')
+        # Get the current timestamp
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+       # Close the Pandas Excel writer and output the Excel file to the buffer
+        st.download_button(
+            label= ('Download Schedule and Simulation Data for: ' + selected_iron),
+            data=buffer,
+            file_name= "FDNXSchedule_" + timestamp +".xlsx",
+            mime="application/vnd.ms-excel"
+        )
             
 
                 
