@@ -33,7 +33,7 @@ if uploaded_file is not None:
     st.dataframe(df_jobs)
     with st.form(key='sheet_selector_form'):
         selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","80-55-06","G-35"])
-        submit_button = st.form_submit_button(label='Submit')
+        submit_button = st.form_submit_button(label='Generate Schedule')
         if submit_button:
             with st.spinner('Generating schedules for: ' + selected_iron):
                 schedules_made, total_attempts = fs.get_FDNX_schedule(selected_iron,df_jobs)
