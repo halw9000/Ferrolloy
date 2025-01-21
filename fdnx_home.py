@@ -66,7 +66,7 @@ if uploaded_file is not None:
             fdnx2.to_excel(writer, sheet_name='FDNX2')
             fdnx3.to_excel(writer, sheet_name='FDNX3')
             ladles.to_excel(writer, sheet_name='sim_ladles')
-            lans[1].to_excel(writer, sheet_name='sim_lane1')
+            lane[0].to_excel(writer, sheet_name='sim_lane1')
             # Get the current timestamp
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
            # Close the Pandas Excel writer and output the Excel file to the buffer
