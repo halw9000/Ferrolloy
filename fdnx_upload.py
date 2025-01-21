@@ -98,8 +98,7 @@ with st.form(key='replay_sim_form'):
             fdnx2 = st.session_state.fdnx2 
             fdnx3 = st.session_state.fdnx3 
             ladles = st.session_state.ladles
-            lanes = st.session_state.lanes
-            total_attempts = st.session_state.total_attempts    
+            lanes = st.session_state.lanes   
             st.header("FDNX 1 Schedule")
             st.write(schedule_info(fdnx1))
             st.dataframe(fdnx1)
