@@ -5,3 +5,5 @@ import time, io, datetime
 import fdnx_scheduler as fs
 
 st.title("simulator")
+
+st.write("TEST")
