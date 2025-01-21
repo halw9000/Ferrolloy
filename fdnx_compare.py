@@ -17,7 +17,12 @@ with col1:
   com_file1 = st.file_uploader("Upload FDNX Schedule 1", type={"xlsx"})
   if com_file1 is not None:
     com1_fdnx1 = pd.read_excel(com_file1, sheet_name="FDNX1")
-    st.dataframe(com1_fdnx1)
+    com1_fdnx2 = pd.read_excel(com_file1, sheet_name="FDNX2")
+    com1_fdnx3 = pd.read_excel(com_file1, sheet_name="FDNX3")
+    com1_schedule = [com1_fdnx1,com1_fdnx2,com1_fdnx3]
+    with st.spinner("Simulating..."):
+        com1_ladles, com1_lanes, com1_sim_seconds = fx.fdnx_simulator(com1_schedule)   
+    st.write("Schedule 1: " + str(len(com1_ladles)) + " ladles")
 with col2:
   com_file1 = st.file_uploader("Upload FDNX Schedule 2", type={"xlsx"})
 
