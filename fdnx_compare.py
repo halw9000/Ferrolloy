@@ -5,9 +5,12 @@ import time, io, datetime
 import fdnx_simulator as fx
 import fdnx_scheduler as fs
 
+buffer = io.BytesIO()
+to_download = 0
+
 st.write("# Compare Schedules Here")
 st.write("Upload up to three FDNX schedule files to simulate and compare.")
-to_download = 0
+
 
 col1, col2, col3 = st.columns(3)
 with col1:
