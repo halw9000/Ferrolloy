@@ -32,7 +32,7 @@ with col3:
 
 
 if 'ladles' not in st.session_state:
-    st.warn('No Schedule has been generated to compare to')
+    st.warn('No Schedule has been generated to compare.')
 else:
     to_download = 1
     ladles = st.session_state.ladles
@@ -43,14 +43,15 @@ else:
     mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
     mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
     mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
-    
+    st.session_state.mold_wt_chart_data = mold_wt_chart_data
+  
     #CHARTS
     st.header("Poured Amount By Ladle:")
-    st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
-    st.header("Molds Filled Per Ladle:")
-    st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
-    st.header("Average Pour Weight:")
-    st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
+    st.line_chart(st.session_state.mold_wt_chart_data , x="ladle_number",y="total_mold_wt")
+    #st.header("Molds Filled Per Ladle:")
+    #st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
+    #st.header("Average Pour Weight:")
+    #st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
 
 if to_download == 1:
     with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
