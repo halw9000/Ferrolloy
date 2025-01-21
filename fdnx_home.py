@@ -42,7 +42,7 @@ if uploaded_file is not None:
                 fdnx3 = schedules_made[2]
             if total_attempts < fs.max_attempts: 
                 st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
-                st.write("Brett! right now these schedules are weighted by a measure I made up called 'deck time' which we will need to discuss. It's basically how long molds take to pour and sit in their jacket. I can weight by other things--we will need to find what works.")
+                st.write("Brett! right now these schedules are weighted by a measure I made up called 'deck time' which we will need to discuss. It's basically how long molds take to pour and sit in their jacket. I can weight by other things--we will need to find what works. Feel free to click generate/simulate as many times as you want, won't hurt anything.")
                 st.header("FDNX 1 Schedule")
                 st.write(schedule_info(fdnx1))
                 st.dataframe(fdnx1)
