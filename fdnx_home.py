@@ -27,6 +27,7 @@ st.write("Brett, remember you need to overwrite the 'cores required' column with
 buffer = io.BytesIO()
 to_download = 0
 
+
 if uploaded_file is not None:
     df_jobs = fs.import_FDNX_jobs(uploaded_file)
     st.dataframe(df_jobs)
@@ -53,6 +54,7 @@ if uploaded_file is not None:
             st.write(schedule_info(fdnx3))
             st.dataframe(fdnx3)
             to_download = 1
+        continue
     
     
     if to_download == 1:
