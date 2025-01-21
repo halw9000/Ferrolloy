@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 
-with st.navingation:
+with st.navigation:
     
     st.page('fdnx_home.py', title='FDNX Scheduler', icon='⏰')
     st.page('pages/simulation.py', title='Deck Simulator', icon='🧰️')
