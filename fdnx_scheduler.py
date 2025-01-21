@@ -19,7 +19,7 @@ pour_weight_weight = 0
 crt_count_weight = 1
 deck_time_weight = 0
 possible_schedules = []
-max_attempts = 1500
+max_attempts = 2500
 ############################################################################################################
 
 ##IMPORT & TRANSFORM DATA
