@@ -18,3 +18,19 @@ with col2:
 
 with col3:
   com_file1 = st.file_uploader("Upload FDNX Schedule 3", type={"xlsx"})
+
+
+if 'ladles' not in st.session_state:
+    st.warn('No Schedule has been generated to compare to')
+else:
+    ladles = st.session_state.ladles
+    mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
+    mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
+    mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
+    #CHARTS
+    st.header("Poured Amount By Ladle:")
+    st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
+    st.header("Molds Filled Per Ladle:")
+    st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
+    st.header("Average Pour Weight:")
+    st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
