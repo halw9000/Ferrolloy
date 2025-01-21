@@ -24,7 +24,7 @@ with col1:
     com1_schedule = [com1_fdnx1,com1_fdnx2,com1_fdnx3]
     with st.spinner("Simulating..."):
         com1_ladles, com1_lanes, com1_sim_seconds = fx.fdnx_simulator(com1_schedule)   
-    st.write("Schedule A: " + str(len(com1_ladles))) + " ladles")
+    st.write("Schedule A: " + str(len(com1_ladles)) + " ladles")
     
     ## update Charts
     com1_mold_wt_chart_data = com1_ladles[['ladle_number', 'total_mold_wt']]
@@ -54,7 +54,7 @@ with col2:
     with st.spinner("Simulating..."):
         com2_ladles, com2_lanes, com2_sim_seconds = fx.fdnx_simulator(com2_schedule)   
       
-    st.write("Schedule B: " + str(len(com2_ladles))) + " ladles")
+    st.write("Schedule B: " + str(len(com2_ladles)) + " ladles")
     
     ## UPDATE CHARTS
 
