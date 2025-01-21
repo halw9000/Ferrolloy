@@ -78,7 +78,7 @@ if uploaded_file is not None:
            # Close the Pandas Excel writer and output the Excel file to the buffer
             writer.close()
             st.download_button(
-                label= ('Download Schedule for: ' + selected_iron),
+                label= ('Download Schedule annd detailed simulation data for: ' + selected_iron),
                 data=buffer,
                 file_name= "FDNXSchedule_" + timestamp +".xlsx",
                 mime="application/vnd.ms-excel"
