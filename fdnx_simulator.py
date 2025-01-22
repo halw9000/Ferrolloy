@@ -226,18 +226,19 @@ def fdnx_simulator(test_schedule):
                     
                     # Update the current time
                     else:
-                       # other_pourable_carts, delay_time = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time, 60)   
-                        #if not other_pourable_carts.empty:
-                        #other_min_mold_wt = other_pourable_carts['mold_wt'].min()
-                            #other_min_temp = other_pourable_carts[other_pourable_carts['mold_wt'] == other_min_mold_wt]['pour_temp_min'].min()
-                            #if current_ladle['ladle_temp'] > other_min_temp and current_ladle['ladle_weight'] >= other_min_mold_wt:
-                             #   row = other_pourable_carts.iloc[0]
-                              #  lane_number = row['lane']
-                               # lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
-                                #lane_index = lane.index.get_loc(row.name)
-                                #index = lane_index
-                                #current_time += delay_time
-                            #else: 
+                        other_pourable_carts = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time + fc.ladle_doubletap_delay)   
+                        if not other_pourable_carts.empty:
+                            other_min_mold_wt = other_pourable_carts['mold_wt'].min()
+                            other_min_temp = other_pourable_carts[other_pourable_carts['mold_wt'] == other_min_mold_wt]['pour_temp_min'].min()
+                            delay_ladle_temp_drop = fc.ladle_tempdrop_min / 60 * fc.ladle_doubletap_delay
+                            if current_ladle['ladle_temp'] - delay_ladle_temp_drop > other_min_temp and current_ladle['ladle_weight'] >= other_min_mold_wt:
+                                row = other_pourable_carts.iloc[0]
+                                lane_number = row['lane']
+                                lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
+                                lane_index = lane.index.get_loc(row.name)
+                                current_time += fc.ladle_doubletap_delay
+                                current_ladle['ladle_temp']  -=  delay_ladle_temp_drop
+                                continue 
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
                         ladle_number += 1
                         last_ladle_start = current_ladle['start_time']
