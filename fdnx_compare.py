@@ -62,7 +62,7 @@ with col2:
     com2_mold_count_chart_data = com2_ladles[['ladle_number', 'molds_filled']]
     com2_mold_avgwt_chart_data = com2_ladles[['ladle_number', 'avg_mold_wt']]
     
-    com2_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'Poured B', 'deck_weight' : 'Deck B'}, inplace=True)
+    com2_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt':'Poured B', 'deck_weight' : 'Deck B'}, inplace=True)
     com2_mold_count_chart_data.rename(columns={'ladle_number': 'ladle_number', 'molds_filled': 'Schedule B'}, inplace=True)
     com2_mold_avgwt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'avg_mold_wt': 'Schedule B'}, inplace=True)
     
