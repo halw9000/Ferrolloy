@@ -26,5 +26,6 @@ ladle_start_temp_dev = 10
 ladle_tempdrop_min = 10
 
 ladle_refill_time = 300  # Time to refill a ladle in seconds
-
 furnace_ready_sec = 0  # Minimum time to refill a ladle in seconds
+
+ladle_doubletap_delay = 60
