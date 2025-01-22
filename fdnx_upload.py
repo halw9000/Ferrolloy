@@ -56,7 +56,6 @@ if uploaded_file is not None:
                 
             if total_attempts < fs.max_attempts: 
                 st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
-                st.write("Brett! right now these schedules are weighted by a measure I made up called 'deck time' which we will need to discuss. It's basically how long molds take to pour and sit in their jacket. I can weight by other things--we will need to find what works. Feel free to click generate/simulate as many times as you want, won't hurt anything.")
                 st.header("FDNX 1 Schedule")
                 st.write(schedule_info(fdnx1))
                 st.dataframe(fdnx1)
@@ -73,9 +72,7 @@ if uploaded_file is not None:
                         ladles = st.session_state.ladles
                         lanes = st.session_state.lanes
                 st.header("Simulated Ladles:")
-                st.write("Brett-- This is a the simulation. Logic needs improved as well as things like column headers--for example, 'ladle weight' is really the leftover weight/pig after pouring. We may find we want to collect other data as well. Teh simulation logic right now is not treating the furnace right I do not think, and therefore we see more pours where pour weight is ~400.")
                 st.dataframe(ladles)
-                st.write("Brett--at the very bottom is a download button which contains each of the above tables as well as a page for each 'simulated lane' where you can see when carts were filled, by what ladle, etc. Eventually we can find ways to analyze this data better so you can make adjustments and reevaluate the schedule. The chart below this shows you the expected pour weight by ladle. We will also do another with how many molds are filled with each ladle--get an idea of where there are double-taps and or not all molds filled.")
                 # GET Data for Charts
                 mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
                 mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
