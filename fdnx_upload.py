@@ -76,7 +76,7 @@ if uploaded_file is not None:
             st.header("Simulated Ladles: " + str(len(ladles)))
             st.dataframe(ladles)
             # GET Data for Charts
-            mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
+            mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt','deck_weight']]
             mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
             mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
             #CHARTS
