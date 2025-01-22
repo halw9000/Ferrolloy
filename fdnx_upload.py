@@ -32,6 +32,11 @@ if uploaded_file is not None:
         selected_iron = st.selectbox("What iron type should we schedule?",["65-45-12","80-55-06","G-35"])
         st.session_state.selected_iron = selected_iron
         selected_iron = st.session_state.selected_iron
+        st.radio(
+            "Balance Schedule Metric:",
+            key="balancer_selector",
+            options=["Deck Time", "Total Molds", "Pour Weight"],
+        )
         submit_button = st.form_submit_button(label='Generate Schedule & Simulate')
         if submit_button:
             to_download = 0
