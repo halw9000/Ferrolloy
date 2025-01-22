@@ -27,11 +27,11 @@ with col1:
     st.write("Schedule A: " + str(len(com1_ladles)) + " ladles")
     
     ## update Charts
-    com1_mold_wt_chart_data = com1_ladles[['ladle_number', 'total_mold_wt']]
+    com1_mold_wt_chart_data = com1_ladles[['ladle_number', 'total_mold_wt','deck_weight']]
     com1_mold_count_chart_data = com1_ladles[['ladle_number', 'molds_filled']]
     com1_mold_avgwt_chart_data = com1_ladles[['ladle_number', 'avg_mold_wt']]
     
-    com1_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'Schedule A'}, inplace=True)
+    com1_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'Poured A', 'deck_weight' : 'Deck A'}, inplace=True)
     com1_mold_count_chart_data.rename(columns={'ladle_number': 'ladle_number', 'molds_filled': 'Schedule A'}, inplace=True)
     com1_mold_avgwt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'avg_mold_wt': 'Schedule A'}, inplace=True)
     
@@ -58,11 +58,11 @@ with col2:
     
     ## UPDATE CHARTS
 
-    com2_mold_wt_chart_data = com2_ladles[['ladle_number', 'total_mold_wt']]
+    com2_mold_wt_chart_data = com2_ladles[['ladle_number', 'total_mold_wt','deck_weight']]
     com2_mold_count_chart_data = com2_ladles[['ladle_number', 'molds_filled']]
     com2_mold_avgwt_chart_data = com2_ladles[['ladle_number', 'avg_mold_wt']]
     
-    com2_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'Schedule B'}, inplace=True)
+    com2_mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'Poured B', 'deck_weight' : 'Deck B'}, inplace=True)
     com2_mold_count_chart_data.rename(columns={'ladle_number': 'ladle_number', 'molds_filled': 'Schedule B'}, inplace=True)
     com2_mold_avgwt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'avg_mold_wt': 'Schedule B'}, inplace=True)
     
