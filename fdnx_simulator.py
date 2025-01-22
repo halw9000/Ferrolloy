@@ -242,7 +242,7 @@ def fdnx_simulator(test_schedule):
                         current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
                         current_time += fc.ladle_refill_time
                         #lane_index = 1
-                continue
+                    continue
                 # Re-check the top rows after refilling the ladle
                 top_rows_df, current_time = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time,0)
         break
