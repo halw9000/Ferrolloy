@@ -55,7 +55,7 @@ def pourable_carts(lanes, ladle_time):
                 if incomplete_carts.index[0] == 0 or lane.iloc[lane.index.get_loc(top_row.name) - 1]['jacket_timer'] <= ladle_time:
                     top_row['lane'] = lane_number
                     top_rows.append(top_row)
-    return pd.DataFrame(top_rows), current_time
+    return pd.DataFrame(top_rows)
 
 ############################################################################################################
 ##LADLE FUNCTIONS
