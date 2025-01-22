@@ -98,8 +98,8 @@ else:
     fdnx2 = st.session_state.fdnx2
     fdnx3 = st.session_state.fdnx3
     # weight chart
-    mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
-    mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'Simulated'}, inplace=True)
+    mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt','deck_weight']]
+    mold_wt_chart_data.rename(columns={'ladle_number': 'ladle_number', 'total_mold_wt': 'Sim - Poured','deck_weight':'Sim - Deck Weight'}, inplace=True)
     st.session_state.mold_wt_chart_data = mold_wt_chart_data
     
     mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
