@@ -75,6 +75,9 @@ def balance_FDNX(df, material, total_attempts, balancer):
     ## Filter orders for iron / material
     df_material = df[df['material'] == material]
     total_attempts = 0
+    pour_weight_weight = 0
+    crt_count_weight = 0
+    deck_time_weight = 0
     if balancer == "Deck Time":
         deck_time_weight = 1
     elif balancer == "Total Molds":
