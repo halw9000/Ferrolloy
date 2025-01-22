@@ -219,30 +219,30 @@ def fdnx_simulator(test_schedule):
                             current_time += pour_time
                         else:
                             current_time += pour_time + fc.cart_pour_buffer_sec
-                                      # Update the current time
+                    
+                    
+                    
+                    # Update the current time
                     else:
-                        other_pourable_carts, delay_time = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time, 60)
-                        
-                        #if not other_pourable_carts.empty:
-                         #   other_min_mold_wt = other_pourable_carts['mold_wt'].min()
-                         #   other_min_temp = other_pourable_carts[other_pourable_carts['mold_wt'] == other_min_mold_wt]['pour_temp_min'].min()
-                         #   if current_ladle['ladle_temp'] > other_min_temp and current_ladle['ladle_weight'] >= other_min_mold_wt:
-                          #      row = other_pourable_carts.iloc[0]
-                           #     lane_number = row['lane']
-                            #    lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
-                             #   lane_index = lane.index.get_loc(row.name)
-                              #  index = lane_index
-                               # break
-                            #continue
-                        # Refill the ladle if it cannot pour the next mold
-                        ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
-                        ladle_number += 1
-                        last_ladle_start = current_ladle['start_time']
-                        current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
-                        current_time += fc.ladle_refill_time
+                        other_pourable_carts, delay_time = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time, 60)   
+                        if not other_pourable_carts.empty:
+                            other_min_mold_wt = other_pourable_carts['mold_wt'].min()
+                            other_min_temp = other_pourable_carts[other_pourable_carts['mold_wt'] == other_min_mold_wt]['pour_temp_min'].min()
+                            if current_ladle['ladle_temp'] > other_min_temp and current_ladle['ladle_weight'] >= other_min_mold_wt:
+                                row = other_pourable_carts.iloc[0]
+                                lane_number = row['lane']
+                                lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
+                                lane_index = lane.index.get_loc(row.name)
+                                index = lane_index
+                                current_time += delay_time
+                            else: 
+                                ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
+                                ladle_number += 1
+                                last_ladle_start = current_ladle['start_time']
+                                current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
+                                current_time += fc.ladle_refill_time
                         #lane_index = 1
                         continue
-                
                 # Re-check the top rows after refilling the ladle
                 top_rows_df, current_time = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time,0)
         break
