@@ -23,7 +23,7 @@ ladle_weight_dev = 20
 
 ladle_start_temp_avg = 2650
 ladle_start_temp_dev = 10
-ladle_tempdrop_min = 0
+ladle_tempdrop_min = 1
 
 ladle_refill_time = 300  # Time to refill a ladle in seconds
 furnace_ready_sec = 0  # Minimum time to refill a ladle in seconds
