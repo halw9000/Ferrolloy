@@ -18,7 +18,7 @@ distance_between_lanes_sec = 10  # Distance between lanes in seconds
 
 ## LADLE Constants
 ladle_capacity = 650
-ladle_avg_weight = 560
+ladle_avg_weight = 600
 ladle_weight_dev = 20
 
 ladle_start_temp_avg = 2650
