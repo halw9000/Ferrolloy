@@ -188,19 +188,15 @@ def fdnx_simulator(test_schedule):
     ladle_number = 1
     # Create the first ladle
     current_ladle = fill_ladle(current_time, ladle_number, 0)
-
+    
     # Simulation loop
-    iterations = 0
     while True:
         # Get the top rows from lanes 1-6
         top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
-        while top_rows_df.empty or top_rows_df['molds_remaining'].sum() == 0:
+        while top_rows_df.empty and pd.concat(lanes)['molds_remaining']>0:
             # Increment the current time and check for pourable carts again
             current_time += 1
             top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
-            iterations += 1
-            if iterations > 1000:
-                break
             continue
         while not top_rows_df.empty and top_rows_df['molds_remaining'].sum() > 0:
         #while top_rows_df['molds_remaining'].sum() > 0:
