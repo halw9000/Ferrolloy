@@ -17,7 +17,7 @@ schd_var_threshold = .0033  # Percent variance per schedule allowed between tota
 mold_hour_weight = 0
 pour_weight_weight = 0
 crt_count_weight = 0
-deck_time_weight = 1
+deck_time_weight = 0
 possible_schedules = []
 max_attempts = 2500
 ############################################################################################################
@@ -71,10 +71,17 @@ def import_FDNX_jobs(uploaded_file):
 ## FUNCTIONS
 
 ## BALANCE FDNX Schedule
-def balance_FDNX(df, material, total_attempts):
+def balance_FDNX(df, material, total_attempts, balancer):
     ## Filter orders for iron / material
     df_material = df[df['material'] == material]
     total_attempts = 0
+    if balancer == 1:
+        deck_time_weight = 1
+    elif balancer == 2:
+        crt_count_weight = 1
+    elif balancer == 3:
+        pour_weight_weight = 1
+    
 ##split hot from cold in separate FDNX / Lines
     df_cold = df_material[df_material['temp_flag'] == 'Cold']
     df_hot = df_material[df_material['temp_flag'] == 'Hot']
@@ -144,11 +151,11 @@ start_time = time.time()
 # Balance the DataFrames
 unique_schedules = set()
 
-def get_FDNX_schedule(material, df):
+def get_FDNX_schedule(material, df, balancer):
     total_attempts = 0  # Initialize total_attempts within the function
     # Create a list of DataFrames to hold the possible schedules
     
-    df1, df2, df3, total_attempts = balance_FDNX(df, material, total_attempts)
+    df1, df2, df3, total_attempts = balance_FDNX(df, material, total_attempts, balancer)
 
 
     df1 = df1.sort_values(by='mold_wt', ascending=True)
