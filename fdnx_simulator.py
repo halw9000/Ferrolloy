@@ -198,6 +198,7 @@ def fdnx_simulator(test_schedule):
             # Increment the current time and check for pourable carts again
             current_time += 60
             top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
+            current_ladle = update_ladle_temp(current_ladle, 60)
             continue
         while not top_rows_df.empty and top_rows_df['molds_remaining'].sum() > 0:
         #while top_rows_df['molds_remaining'].sum() > 0:
