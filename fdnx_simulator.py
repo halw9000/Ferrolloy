@@ -60,11 +60,11 @@ def pourable_carts(lanes, ladle_time):
 ############################################################################################################
 ##LADLE FUNCTIONS
 
-def fill_ladle(current_time, ladle_number, last_ladle_start):
+def fill_ladle(current_time, ladle_number, last_ladle_start, deck_wt):
     weight = min(np.random.normal(fc.ladle_avg_weight, fc.ladle_weight_dev), fc.ladle_capacity)
     temperature = np.random.normal(fc.ladle_start_temp_avg, fc.ladle_start_temp_dev)
     current_time = max(current_time + fc.ladle_refill_time, last_ladle_start + fc.furnace_ready_sec)
-    return {'ladle_number': ladle_number, 'ladle_weight': weight, 'ladle_start_weight': weight, 'ladle_temp': temperature, 'ladle_start_temp': temperature, 'start_time': current_time, 'molds_filled': 0, 'total_mold_wt': 0, 'end_time': None}
+    return {'ladle_number': ladle_number, 'deck_weight': deck_wt, 'ladle_weight': weight, 'ladle_start_weight': weight, 'ladle_temp': temperature, 'ladle_start_temp': temperature, 'start_time': current_time, 'molds_filled': 0, 'total_mold_wt': 0, 'end_time': None}
 
 def update_ladle(ladle, mold_wt, current_time):
     ladle['ladle_weight'] -= mold_wt
@@ -76,7 +76,16 @@ def update_ladle(ladle, mold_wt, current_time):
 def update_ladle_temp(ladle, elapsed_time):
     ladle['ladle_temp'] -= (fc.ladle_tempdrop_min / 60) * elapsed_time
     return ladle
-
+    
+def get_deck_wt(lanes):
+    deck_wt = 0
+    for lane in lanes:
+        if not lane.empty:
+            incomplete_carts = lane[lane['cart_completed'] == False]
+            if not incomplete_carts.empty:
+                deck_wt += incomplete_carts.iloc[0]['mold_wt']
+    return deck_wt
+    
 def ladle_needs_refill(ladle, min_mold_wt, min_mold_temp):
     return ladle['ladle_weight'] < min_mold_wt or ladle['ladle_temp'] < min_mold_temp
 
@@ -173,9 +182,10 @@ def fdnx_simulator(test_schedule):
 
     # Initialize ladles DataFrame
     ladles = pd.DataFrame({
-        'ladle_number': pd.Series(dtype='int'),  
+        'ladle_number': pd.Series(dtype='int'),
+        'deck_weight': pd.Series(dtype='float'),
         'ladle_weight': pd.Series(dtype='float'),
-        'ladle_start_weight': pd.Series(dtype='float'),  
+        'ladle_start_weight': pd.Series(dtype='float'),
         'ladle_temp': pd.Series(dtype='float'),
         'ladle_start_temp': pd.Series(dtype='float'),
         'start_time': pd.Series(dtype='float'),
@@ -242,7 +252,7 @@ def fdnx_simulator(test_schedule):
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
                         ladle_number += 1
                         last_ladle_start = current_ladle['start_time']
-                        current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
+                        current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start, get_deck_wt(lanes))
                         current_time += fc.ladle_refill_time
                         lane_index -= 1
                         continue
