@@ -54,39 +54,40 @@ if uploaded_file is not None:
                 st.session_state.total_attempts = total_attempts
                 total_attempts = st.session_state.total_attempts
                 
-            if total_attempts < fs.max_attempts: 
-                st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
-                st.header("FDNX 1 Schedule")
-                st.write(schedule_info(fdnx1))
-                st.dataframe(fdnx1)
-                st.header("FDNX 2 Schedule")
-                st.write(schedule_info(fdnx2))
-                st.dataframe(fdnx2)
-                st.header("FDNX 3 Schedule")
-                st.write(schedule_info(fdnx3))
-                st.dataframe(fdnx3)
-                with st.spinner("Simulation running. Should take ~20-30s max"):
-                        ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)   
-                        st.session_state.ladles = ladles
-                        st.session_state.lanes = lanes
-                        ladles = st.session_state.ladles
-                        lanes = st.session_state.lanes
-                st.header("Simulated Ladles: " + str(len(ladles)))
-                st.dataframe(ladles)
-                # GET Data for Charts
-                mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
-                mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
-                mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
-                #CHARTS
-                st.header("Poured Amount By Ladle: " + str(round(ladles['total_mold_wt'].mean(),1)))
-                st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
-                st.header("Molds Filled Per Ladle: " + str(round(ladles['molds_filled'].mean(),1)))
-                st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
-                st.header("Average Pour Weight: " + str(round(ladles['avg_mold_wt'].mean(),1)))
-                st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
-                to_download = 1
+            if total_attempts < fs.max_attempts:
             else:
                 st.warning("Max attempts were reached. Results may be suboptimal. Try again, might work, who knows..")
+            st.success("Done! Attempts: " + str(total_attempts) + ". Schedules displayed and available for download.")
+            st.header("FDNX 1 Schedule")
+            st.write(schedule_info(fdnx1))
+            st.dataframe(fdnx1)
+            st.header("FDNX 2 Schedule")
+            st.write(schedule_info(fdnx2))
+            st.dataframe(fdnx2)
+            st.header("FDNX 3 Schedule")
+            st.write(schedule_info(fdnx3))
+            st.dataframe(fdnx3)
+            with st.spinner("Simulation running. Should take ~20-30s max"):
+                    ladles, lanes, sim_seconds = fx.fdnx_simulator(schedules_made)   
+                    st.session_state.ladles = ladles
+                    st.session_state.lanes = lanes
+                    ladles = st.session_state.ladles
+                    lanes = st.session_state.lanes
+            st.header("Simulated Ladles: " + str(len(ladles)))
+            st.dataframe(ladles)
+            # GET Data for Charts
+            mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
+            mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
+            mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
+            #CHARTS
+            st.header("Poured Amount By Ladle: " + str(round(ladles['total_mold_wt'].mean(),1)))
+            st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
+            st.header("Molds Filled Per Ladle: " + str(round(ladles['molds_filled'].mean(),1)))
+            st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
+            st.header("Average Pour Weight: " + str(round(ladles['avg_mold_wt'].mean(),1)))
+            st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
+            to_download = 1
+
 
 with st.form(key='replay_sim_form'):
     replay_button = st.form_submit_button(label='Show Prior Schedule and Simulation')
