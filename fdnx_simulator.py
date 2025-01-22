@@ -231,7 +231,7 @@ def fdnx_simulator(test_schedule):
                                 lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
                                 lane_index = lane.index.get_loc(row.name)
                                 index = lane_index
-                                continue
+                                break
                             continue
                         # Refill the ladle if it cannot pour the next mold
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
