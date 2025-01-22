@@ -222,13 +222,17 @@ def fdnx_simulator(test_schedule):
                         # Update the current time
                     else:
                         other_pourable_carts = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
+                        
                         if not other_pourable_carts.empty:
-                            # Jump to the next pourable cart
-                            row = other_pourable_carts.iloc[0]
-                            lane_number = row['lane']
-                            lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
-                            lane_index = lane.index.get_loc(row.name)
-                            index = lane_index
+                            other_min_mold_wt = other_pourable_carts['mold_wt'].min()
+                            other_min_temp = other_pourable_carts[other_pourable_carts['mold_wt'] == other_min_mold_wt]['pour_temp_min'].min()
+                            if current_ladle['ladle_temp'] > other_min_temp and current_ladle['ladle_weight'] >= other_min_mold_wt:
+                                row = other_pourable_carts.iloc[0]
+                                lane_number = row['lane']
+                                lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
+                                lane_index = lane.index.get_loc(row.name)
+                                index = lane_index
+                                continue
                             continue
                         # Refill the ladle if it cannot pour the next mold
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
