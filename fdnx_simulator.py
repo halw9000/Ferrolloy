@@ -194,7 +194,7 @@ def fdnx_simulator(test_schedule):
     while True:
         # Get the top rows from lanes 1-6
         top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
-        while top_rows_df.empty and pd.concat(lanes)['molds_remaining'].sum() > 0:
+        while top_rows_df.empty and pd.concat([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6])['molds_remaining'].sum() > 0:
             # Increment the current time and check for pourable carts again
             current_time += 60
             top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
@@ -245,7 +245,8 @@ def fdnx_simulator(test_schedule):
                         continue
                 # Re-check the top rows after refilling the ladle
                 top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
-        break
+        if pd.concat([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6])['molds_remaining'].sum() == 0:
+            break
     ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
     ladles['avg_mold_wt'] = ladles.apply(lambda row: row['total_mold_wt'] / row['molds_filled'], axis=1)
     
