@@ -247,6 +247,8 @@ def fdnx_simulator(test_schedule):
                         continue
                 # Re-check the top rows after refilling the ladle
                 top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
+                current_time += fc.cart_pour_buffer_sec
+                current_ladle = update_ladle_temp(current_ladle, fc.cart_pour_buffer_sec)
         if pd.concat([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6])['molds_remaining'].sum() == 0:
             break
     ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
