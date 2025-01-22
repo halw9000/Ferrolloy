@@ -81,7 +81,7 @@ if uploaded_file is not None:
             mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
             #CHARTS
             st.header("Poured Amount By Ladle: " + str(round(ladles['total_mold_wt'].mean(),1)))
-            st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
+            st.line_chart(mold_wt_chart_data, x="ladle_number")
             st.header("Molds Filled Per Ladle: " + str(round(ladles['molds_filled'].mean(),1)))
             st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
             st.header("Average Pour Weight: " + str(round(ladles['avg_mold_wt'].mean(),1)))
