@@ -78,11 +78,11 @@ if uploaded_file is not None:
                 mold_count_chart_data = ladles[['ladle_number', 'molds_filled']]
                 mold_avgwt_chart_data = ladles[['ladle_number', 'avg_mold_wt']]
                 #CHARTS
-                st.header("Poured Amount By Ladle: " + str(ladles['total_mold_wt']].mean()))
+                st.header("Poured Amount By Ladle: " + str(ladles['total_mold_wt'].mean()))
                 st.line_chart(mold_wt_chart_data, x="ladle_number",y="total_mold_wt")
-                st.header("Molds Filled Per Ladle: " + str(ladles['molds_filled']].mean()))
+                st.header("Molds Filled Per Ladle: " + str(ladles['molds_filled'].mean()))
                 st.line_chart(mold_count_chart_data, x="ladle_number",y="molds_filled")
-                st.header("Average Pour Weight: " + str(ladles['avg_mold_wt']].mean()))
+                st.header("Average Pour Weight: " + str(ladles['avg_mold_wt'].mean()))
                 st.line_chart(mold_avgwt_chart_data, x="ladle_number",y="avg_mold_wt")
                 to_download = 1
             else:
