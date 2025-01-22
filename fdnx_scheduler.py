@@ -75,11 +75,11 @@ def balance_FDNX(df, material, total_attempts, balancer):
     ## Filter orders for iron / material
     df_material = df[df['material'] == material]
     total_attempts = 0
-    if balancer == 1:
+    if balancer == "Deck Time":
         deck_time_weight = 1
-    elif balancer == 2:
+    elif balancer == "Total Molds":
         crt_count_weight = 1
-    elif balancer == 3:
+    elif balancer == "Pour Weight":
         pour_weight_weight = 1
     
 ##split hot from cold in separate FDNX / Lines
