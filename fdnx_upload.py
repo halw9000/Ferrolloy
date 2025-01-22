@@ -71,7 +71,7 @@ if uploaded_file is not None:
                         st.session_state.lanes = lanes
                         ladles = st.session_state.ladles
                         lanes = st.session_state.lanes
-                st.header("Simulated Ladles:")
+                st.header("Simulated Ladles: " + str(len(ladles)))
                 st.dataframe(ladles)
                 # GET Data for Charts
                 mold_wt_chart_data = ladles[['ladle_number', 'total_mold_wt']]
