@@ -83,7 +83,7 @@ def get_deck_wt(lanes):
         if not lane.empty:
             incomplete_carts = lane[lane['cart_completed'] == False]
             if not incomplete_carts.empty:
-                deck_wt += incomplete_carts.iloc[0]['mold_wt']
+                deck_wt += incomplete_carts.iloc[0]['mold_wt'] * fc.molds_per_cart
     return deck_wt
     
 def ladle_needs_refill(ladle, min_mold_wt, min_mold_temp):
