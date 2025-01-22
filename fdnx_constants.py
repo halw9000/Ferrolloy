@@ -13,7 +13,7 @@ deck_lanes = 6
 lane_cart_capacity = 20  # Capacity of each lane in terms of carts (not needed???)
 molds_per_cart = 3  # Number of molds per cart
 pour_speed_lbs_sec = 2  # Pour speed in lbs/sec
-cart_pour_buffer_sec = 20  # Buffer time for pouring carts
+cart_pour_buffer_sec = 5  # Buffer time for pouring carts
 distance_between_lanes_sec = 10  # Distance between lanes in seconds
 
 ## LADLE Constants
@@ -23,7 +23,7 @@ ladle_weight_dev = 20
 
 ladle_start_temp_avg = 2650
 ladle_start_temp_dev = 10
-ladle_tempdrop_min = 20
+ladle_tempdrop_min = 12
 
 ladle_refill_time = 300  # Time to refill a ladle in seconds
 furnace_ready_sec = 0  # Minimum time to refill a ladle in seconds
