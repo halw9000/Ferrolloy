@@ -194,7 +194,7 @@ def fdnx_simulator(test_schedule):
     while True:
         # Get the top rows from lanes 1-6
         top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
-        while top_rows_df.empty or pd.concat(lanes)['molds_remaining'].sum() > 0:
+        while top_rows_df.empty and pd.concat(lanes)['molds_remaining'].sum() > 0:
             # Increment the current time and check for pourable carts again
             current_time += 60
             top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
