@@ -51,7 +51,7 @@ def pourable_carts(lanes, ladle_time):
             if not incomplete_carts.empty:
                 top_row = incomplete_carts.iloc[0].copy()  # Use .copy() to avoid SettingWithCopyWarning
                 # Check if the row above has a jacket_timer less than ladle_time
-                if lane.index[0] == 0 or lane.iloc[lane.index.get_loc(top_row.name) - 1]['jacket_timer'] <= ladle_time:
+                if incomplete_carts.index[0] == 0 or lane.iloc[lane.index.get_loc(top_row.name) - 1]['jacket_timer'] <= ladle_time:
                     top_row['lane'] = lane_number
                     top_rows.append(top_row)
     return pd.DataFrame(top_rows)
