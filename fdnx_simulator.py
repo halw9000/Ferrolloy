@@ -231,7 +231,7 @@ def fdnx_simulator(test_schedule):
                         last_ladle_start = current_ladle['start_time']
                         current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start)
                         current_time += fc.ladle_refill_time
-                        lane_index = 1
+                        #lane_index = 1
                         continue
                 
                 # Re-check the top rows after refilling the ladle
