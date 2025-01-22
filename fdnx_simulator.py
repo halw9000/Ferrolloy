@@ -219,14 +219,6 @@ def fdnx_simulator(test_schedule):
                         else:
                             current_time += pour_time + fc.cart_pour_buffer_sec
                     
-                    
-                        if not other_pourable_carts.empty:
-                            # Jump to the next pourable cart
-                            row = other_pourable_carts.iloc[0]
-                            lane_number = row['lane']
-                            lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
-                            lane_index = lane.index.get_loc(row.name)
-                            continue
                         # Update the current time
                     else:
                         other_pourable_carts = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
