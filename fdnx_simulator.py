@@ -197,7 +197,7 @@ def fdnx_simulator(test_schedule):
     current_time = 0
     ladle_number = 1
     # Create the first ladle
-    current_ladle = fill_ladle(current_time, ladle_number, 0,get_deck_wt(lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]))
+    current_ladle = fill_ladle(current_time, ladle_number, 0, get_deck_wt([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]) )
     
     # Simulation loop
     while True:
@@ -252,7 +252,7 @@ def fdnx_simulator(test_schedule):
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
                         ladle_number += 1
                         last_ladle_start = current_ladle['start_time']
-                        current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start, get_deck_wt(lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]))
+                        current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start, get_deck_wt([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]))
                         current_time += fc.ladle_refill_time
                         lane_index -= 1
                         continue
