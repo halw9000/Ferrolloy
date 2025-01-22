@@ -83,7 +83,6 @@ def ladle_needs_refill(ladle, min_mold_wt, min_mold_temp):
 def pour_mold(ladle, row, current_time):
     mold_wt = row['mold_wt']
     pour_time = mold_wt / fc.pour_speed_lbs_sec
-    ladle = update_ladle_temp(ladle, pour_time)
     ladle = update_ladle(ladle, mold_wt, current_time)
     return ladle, pour_time
 
@@ -218,8 +217,10 @@ def fdnx_simulator(test_schedule):
                         # Update the lane
                         if update_lane(lane, lane_index, row, current_time, pour_time, current_ladle):
                             current_time += pour_time
+                            current_ladle = update_ladle_temp(current_ladle, pour_time)
                         else:
                             current_time += pour_time + fc.cart_pour_buffer_sec
+                            current_ladle = update_ladle_temp(current_ladle, pour_time + fc.cart_pour_buffer_sec)
                     
                     
                     
