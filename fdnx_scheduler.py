@@ -162,7 +162,8 @@ def get_FDNX_schedule(material, df, balancer):
 
 
     df1 = df1.sort_values(by='mold_wt', ascending=True)
-    df2 = df2.sample(frac=1).reset_index(drop=True)
+    random_state = random.randint(0, 10000)  # Generate a random integer for random_state
+    df2 = df2.sample(frac=1, random_state=random_state)
     df3 = df3.sort_values(by='mold_wt', ascending=False)
     FDNX_Schedule = [df1, df2, df3]
     
