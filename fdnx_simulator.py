@@ -191,7 +191,8 @@ def fdnx_simulator(test_schedule):
         'start_time': pd.Series(dtype='float'),
         'molds_filled': pd.Series(dtype='float'),
         'total_mold_wt': pd.Series(dtype='float'),
-        'end_time': pd.Series(dtype='float')
+        'end_time': pd.Series(dtype='float'),
+        'top_mold_wt': pd.Series(dtype='float')  # Add column for top mold weight
     })
     #ladles = pd.DataFrame(dtype=ladle_dtype)
     current_time = 0
@@ -199,6 +200,15 @@ def fdnx_simulator(test_schedule):
     # Create the first ladle
     current_ladle = fill_ladle(current_time, ladle_number, 0, get_deck_wt([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]) )
     
+    def get_top_mold_wt(lanes):
+        top_mold_wt = 0
+        for lane in lanes:
+            if not lane.empty:
+                incomplete_carts = lane[lane['cart_completed'] == False]
+                if not incomplete_carts.empty:
+                    top_mold_wt += incomplete_carts.iloc[0]['mold_wt']
+        return top_mold_wt
+
     # Simulation loop
     while True:
         # Get the top rows from lanes 1-6
@@ -210,12 +220,10 @@ def fdnx_simulator(test_schedule):
             current_ladle = update_ladle_temp(current_ladle, 60)
             continue
         while not top_rows_df.empty and top_rows_df['molds_remaining'].sum() > 0:
-        #while top_rows_df['molds_remaining'].sum() > 0:
             for index, row in top_rows_df.iterrows():
                 lane_number = row['lane']
                 lane = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6][lane_number - 1]
                 lane_index = lane.index.get_loc(row.name)  # Get the correct index of the row in the lane
-                # print(lane_index, row)
                 while lane.iloc[lane_index]['molds_remaining'] > 0:
                     mold_wt = row['mold_wt']
                     pour_temp_min = row['pour_temp_min']
@@ -224,6 +232,8 @@ def fdnx_simulator(test_schedule):
                     if current_ladle['ladle_temp'] > pour_temp_min and current_ladle['ladle_weight'] >= mold_wt:
                         # Call pour_mold to update the ladle and calculate pour time
                         current_ladle, pour_time = pour_mold(current_ladle, row, current_time)
+                        # Update the ladle temperature after pouring
+                        current_ladle = update_ladle_temp(current_ladle, pour_time)
                         # Update the lane
                         if update_lane(lane, lane_index, row, current_time, pour_time, current_ladle):
                             current_time += pour_time
@@ -231,10 +241,6 @@ def fdnx_simulator(test_schedule):
                         else:
                             current_time += pour_time + fc.cart_pour_buffer_sec
                             current_ladle = update_ladle_temp(current_ladle, pour_time + fc.cart_pour_buffer_sec)
-                    
-                    
-                    
-                    # Update the current time
                     else:
                         other_pourable_carts = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time + fc.ladle_doubletap_delay)   
                         if not other_pourable_carts.empty:
@@ -248,28 +254,31 @@ def fdnx_simulator(test_schedule):
                                 lane_index = lane.index.get_loc(row.name)
                                 current_time += fc.ladle_doubletap_delay
                                 current_ladle['ladle_temp']  -=  delay_ladle_temp_drop
-                                continue 
+                                continue               
+                        current_ladle['top_mold_wt'] = get_top_mold_wt([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6])
                         ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
                         ladle_number += 1
                         last_ladle_start = current_ladle['start_time']
                         current_ladle = fill_ladle(current_time, ladle_number, last_ladle_start, get_deck_wt([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]))
                         current_time += fc.ladle_refill_time
+                        # Ensure the ladle starts in the same lane it ran out on
                         lane_index -= 1
                         continue
                 # Re-check the top rows after refilling the ladle
                 top_rows_df = pourable_carts([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6], current_time)
+                # Add buffer time when moving to the next lane
                 current_time += fc.cart_pour_buffer_sec
                 current_ladle = update_ladle_temp(current_ladle, fc.cart_pour_buffer_sec)
         if pd.concat([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6])['molds_remaining'].sum() == 0:
             break
+
+    current_ladle['top_mold_wt'] = get_top_mold_wt([lane_1, lane_2, lane_3, lane_4, lane_5, lane_6])
     ladles = pd.concat([ladles, pd.DataFrame([current_ladle])])
     ladles['avg_mold_wt'] = ladles.apply(lambda row: row['total_mold_wt'] / row['molds_filled'], axis=1)
-    
     lanes = [lane_1, lane_2, lane_3, lane_4, lane_5, lane_6]
-
     # End the timer and print the elapsed time
     end_time = time.time()
     #elapsed_time = end_time - start_time
-    return  ladles, lanes, current_time 
+    return ladles, lanes, current_time
 
 
